@@ -1,0 +1,60 @@
+{
+	"name": "@urpflanze/[name]",
+	"version": "0.0.1",
+	"description": "Urpflanze package",
+	"license": "GPL-3.0-or-later",
+	"docs": "",
+	"keywords": [
+		"urpflanze",
+		"typescript"
+	],
+	"author": "",
+	"homepage": "",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/urpflanze-org/[name].git"
+	},
+	"bugs": {
+		"url": "https://github.com/urpflanze-org/[name]/issues",
+		"email": "gennaro.bs@gmail.com"
+	},
+	"funding": [
+		{
+			"type": "kofi",
+			"url": "https://ko-fi.com/urpflanze"
+		},
+		{
+			"type": "bitcoin",
+			"url": "https://explorer.btc.com/btc/address/1CSQq4aMmsA71twvyZHZCjmeB2AmQGCPNq"
+		},
+		{
+			"type": "ethereum",
+			"url": "https://etherscan.io/address/0x9086c4bb7015c1d6dc79162d02e7e1239c982c01"
+		}
+	],
+	"main": "dist",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist",
+		"package.json",
+		"README.md",
+		"LICENSE"
+	],
+	"scripts": {
+		"build": "tsc",
+		"watch": "tsc --watch",
+		"lint": "eslint src --ext .ts",
+		"prepublishOnly": "npm run build",
+		"generate-docs": "npx generate-docs"
+	},
+	"publishConfig": {},
+	"dependencies": {},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^4.16.1",
+		"@urpflanze/typedoc-docs": "^0.1.13",
+		"eslint": "^7.21.0",
+		"eslint-config-prettier": "^8.1.0",
+		"typescript": "4.2"
+	},
+	"googleAnalyticsID": ""
+}
