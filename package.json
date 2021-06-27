@@ -1,7 +1,7 @@
 {
-	"name": "@urpflanze/[name]",
+	"name": "@urpflanze/drawer-canvas",
 	"version": "0.0.1",
-	"description": "Urpflanze package",
+	"description": "Draw Urpflanze scene in browser or Node with canvas",
 	"license": "GPL-3.0-or-later",
 	"docs": "",
 	"keywords": [
@@ -12,10 +12,10 @@
 	"homepage": "",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/urpflanze-org/[name].git"
+		"url": "https://github.com/urpflanze-org/drawer-canvas.git"
 	},
 	"bugs": {
-		"url": "https://github.com/urpflanze-org/[name]/issues",
+		"url": "https://github.com/urpflanze-org/drawer-canvas/issues",
 		"email": "gennaro.bs@gmail.com"
 	},
 	"funding": [
@@ -44,17 +44,22 @@
 		"build": "tsc",
 		"watch": "tsc --watch",
 		"lint": "eslint src --ext .ts",
-		"prepublishOnly": "npm run build",
-		"generate-docs": "npx generate-docs"
+		"prepublishOnly": "npm run build"
 	},
 	"publishConfig": {},
-	"dependencies": {},
+	"peerDependencies": {
+		"@urpflanze/color": "^0.0.3",
+		"@urpflanze/core": "^0.5.1"
+	},
 	"devDependencies": {
-		"@typescript-eslint/eslint-plugin": "^4.16.1",
-		"@urpflanze/typedoc-docs": "^0.1.13",
 		"eslint": "^7.21.0",
 		"eslint-config-prettier": "^8.1.0",
 		"typescript": "4.2"
 	},
-	"googleAnalyticsID": ""
+	"dependencies": {
+		"@ffmpeg/core": "^0.10.0",
+		"@ffmpeg/ffmpeg": "^0.10.1",
+		"@types/node": "^15.12.5",
+		"canvas": "^2.8.0"
+	}
 }
