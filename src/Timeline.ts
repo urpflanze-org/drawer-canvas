@@ -81,7 +81,7 @@ class Timeline extends Emitter<ITimelineEvents> {
 	/**
 	 * Set Sequence
 	 *
-	 * @param {number} duration
+	 * @param {number} duration in ms
 	 * @param {number} framerate
 	 */
 	public setSequence(duration: number, framerate: number): void {
