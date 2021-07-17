@@ -450,6 +450,8 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 		if (typeof background === 'boolean' && background === false) {
 			context.clearRect(0, 0, width, height)
 		} else {
+			context.globalCompositeOperation = 'source-over'
+
 			context.fillStyle = background as string // or true
 			context.fillRect(0, 0, width, height)
 

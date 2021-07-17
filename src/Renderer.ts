@@ -1,7 +1,7 @@
-import { createFFmpeg, fetchFile, FFmpeg } from '@ffmpeg/ffmpeg'
+import { createFFmpeg, FFmpeg } from '@ffmpeg/ffmpeg'
 import { Canvas, JpegConfig, PdfConfig, PngConfig } from 'canvas'
 import * as JSZip from 'jszip'
-
+import BrowserDrawerCanvas from './browser'
 import { DrawerCanvas } from './DrawerCanvas'
 import { bBrowser, bNode } from './utils'
 
@@ -15,9 +15,20 @@ class Renderer {
 
 	constructor(drawer: DrawerCanvas, ffmpegCorePath?: string) {
 		this.drawer = drawer
-		this.ffmpegCorePath = ffmpegCorePath
+		this.ffmpegCorePath =
+			typeof ffmpegCorePath === 'undefined' && drawer instanceof BrowserDrawerCanvas
+				? 'https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js'
+				: ffmpegCorePath
 	}
 
+	/**
+	 * Render any frame and create array of zip
+	 *
+	 * @param imagesType
+	 * @param quality
+	 * @param framesForChunk
+	 * @returns
+	 */
 	public async zip(
 		imagesType: 'image/jpeg' | 'image/png' = 'image/png',
 		quality: number = 1,
@@ -48,6 +59,15 @@ class Renderer {
 		return zipParts
 	}
 
+	/**
+	 * Render animation
+	 *
+	 * @param type render type
+	 * @param quality
+	 * @param ffmpegLogger
+	 * @param ffmpegProgress
+	 * @returns
+	 */
 	public async render(
 		type: 'video/webm' | 'video/mp4' = 'video/mp4',
 		quality: number = 1,
@@ -97,6 +117,14 @@ class Renderer {
 		return result
 	}
 
+	/**
+	 * Render frame `frameNumber` to Blob or Buffer
+	 *
+	 * @param frameNumber frame to render
+	 * @param mime image type
+	 * @param options quality or options
+	 * @returns Promise of Blob for browser or Buffer for Node
+	 */
 	public frame(frameNumber: number, mime: 'image/png' | 'image/jpeg' = 'image/png', options: OoQ = 1): Promise<BoB> {
 		if (!this.drawer.getOption('clear', true)) {
 			for (let i = 0; i <= frameNumber; i++) {
@@ -111,10 +139,26 @@ class Renderer {
 		return this.blobOrBuffer(mime, options)
 	}
 
+	/**
+	 * Render frame at time to Blob or Buffer
+	 *
+	 * @param time animation time
+	 * @param mime image type
+	 * @param options quality or options
+	 * @returns Promise of Blob for browser or Buffer for Node
+	 */
 	public frameAtTime(time: number, mime: 'image/png' | 'image/jpeg' = 'image/png', options: OoQ = 1): Promise<BoB> {
 		return this.frame(this.drawer.timeline.getFrameAtTime(time), mime, options)
 	}
 
+	/**
+	 * Render frame number to DataUrl
+	 *
+	 * @param frameNumber frame to render
+	 * @param mime image type
+	 * @param options quality or options
+	 * @returns string image
+	 */
 	public frameToDataUrl(
 		frameNumber: number,
 		mime: 'image/png' | 'image/jpeg' = 'image/png',
@@ -133,6 +177,14 @@ class Renderer {
 		return this.toDataUrl(mime, options)
 	}
 
+	/**
+	 * Render a frame at `time` to DataUrl
+	 *
+	 * @param time of animation
+	 * @param mime image type
+	 * @param options quality or options
+	 * @returns string image
+	 */
 	public frameAtTimeToDataUrl(
 		time: number,
 		mime: 'image/png' | 'image/jpeg' = 'image/png',

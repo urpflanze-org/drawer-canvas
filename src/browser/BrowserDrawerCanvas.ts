@@ -1,7 +1,7 @@
-import { Scene } from '@urpflanze/core'
-import { IDrawerCanvasOptions } from './types'
-import { DrawerCanvas } from './DrawerCanvas'
-import { bBrowser } from './utils'
+import type { Scene } from '@urpflanze/core'
+import { IDrawerCanvasOptions } from '../types'
+import { DrawerCanvas } from '../DrawerCanvas'
+import { bBrowser } from '../utils'
 
 class BrowserDrawerCanvas extends DrawerCanvas {
 	protected dpi: number = 1
