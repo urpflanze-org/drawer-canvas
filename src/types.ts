@@ -150,7 +150,7 @@ export interface IRendererEvents {
 		elapsedTime: number
 	}
 	'renderer:zip_preparing': void
-	'renderer:video_init': void
+	'renderer:video_init': { totalFrames: number; duration: number; framerate: number; type: TRendererVideoType }
 	'renderer:video_start': { totalFrames: number; duration: number; framerate: number; type: TRendererVideoType }
 	'renderer:video_progress': {
 		frame: number
