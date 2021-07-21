@@ -101,7 +101,10 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 			if (bBrowser) {
 				const canvas = createCanvas(this.drawerOptions.width, this.drawerOptions.height)
 
-				if (canvasOrContainer instanceof HTMLElement) {
+				if (
+					canvasOrContainer instanceof HTMLElement &&
+					!(canvasOrContainer instanceof HTMLCanvasElement || canvasOrContainer instanceof OffscreenCanvas)
+				) {
 					this.canvas = canvas
 					while (canvasOrContainer.lastChild) canvasOrContainer.removeChild(canvasOrContainer.lastChild)
 					canvasOrContainer.appendChild(canvas as unknown as HTMLCanvasElement)
