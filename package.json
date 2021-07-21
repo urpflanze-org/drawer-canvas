@@ -10,8 +10,8 @@
 	],
 	"module": "build/esm/urpflanze-drawer-canvas.min.js",
 	"browser": "build/umd/urpflanze-drawer-canvas.min.js",
-	"main": "dist/cjs/node/index.js",
-	"types": "dist/cjs/node/index.d.ts",
+	"main": "dist/cjs/index.js",
+	"types": "dist/cjs/index.d.ts",
 	"files": [
 		"build",
 		"dist",
