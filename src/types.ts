@@ -120,8 +120,8 @@ export interface ITimelineEvents {
 	'timeline:update_sequence': ISequenceMeta
 	'timeline:change_status': 'start' | 'stop' | 'pause'
 	'timeline:progress': {
-		current_frame: number
-		current_time: number
+		currentFrame: number
+		currentTime: number
 		fps: number
 	}
 }
@@ -133,4 +133,32 @@ export interface ISequenceMeta {
 	duration: number
 	frames: number
 	framerate: number
+}
+
+export type TRendererVideoType = 'video/webm' | 'video/mp4' | 'gif'
+
+export interface IRendererEvents {
+	'renderer:zip_start': { chunks: number; framesForChunk: number; totalFrames: number }
+	'renderer:zip_progress': {
+		chunk: number
+		frame: number
+		totalFrames: number
+		totalChunks: number
+		framesForChunk: number
+		renderTime: number
+		remainingTime: number
+		elapsedTime: number
+	}
+	'renderer:zip_preparing': void
+	'renderer:video_init': void
+	'renderer:video_start': { totalFrames: number; duration: number; framerate: number; type: TRendererVideoType }
+	'renderer:video_progress': {
+		frame: number
+		duration: number
+		totalFrames: number
+		renderTime: number
+		remainingTime: number
+		elapsedTime: number
+	}
+	'renderer:video_preparing': void
 }
