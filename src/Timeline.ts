@@ -34,8 +34,8 @@ class Timeline extends Emitter<ITimelineEvents> {
 	private fps_samples_index = 0
 	private fps: number
 
-	private current_frame: number
-	private current_time: number
+	private currentFrame: number
+	private currentTime: number
 
 	private paused_time = 0
 	private start_time: number
@@ -60,8 +60,8 @@ class Timeline extends Emitter<ITimelineEvents> {
 
 		this.b_sequence_started = false
 
-		this.current_frame = 0
-		this.current_time = 0
+		this.currentFrame = 0
+		this.currentTime = 0
 
 		this.last_tick = 0
 		this.start_time = 0
@@ -180,8 +180,8 @@ class Timeline extends Emitter<ITimelineEvents> {
 	public stop(): void {
 		if (this.b_sequence_started) {
 			this.b_sequence_started = false
-			this.current_time = 0
-			this.current_frame = 0
+			this.currentTime = 0
+			this.currentFrame = 0
 			this.start_time = 0
 			this.paused_time = 0
 
@@ -209,12 +209,12 @@ class Timeline extends Emitter<ITimelineEvents> {
 				this.calculateFPS(1 / (elapsed / 1000))
 				this.last_tick = currentTime
 
-				this.current_time = (currentTime - (elapsed % this.tick_time)) % this.sequence.duration
-				this.current_frame = this.getFrameAtTime(this.current_time)
+				this.currentTime = (currentTime - (elapsed % this.tick_time)) % this.sequence.duration
+				this.currentFrame = this.getFrameAtTime(this.currentTime)
 
 				this.dispatch('timeline:progress', {
-					current_frame: this.current_frame,
-					current_time: this.current_time,
+					currentFrame: this.currentFrame,
+					currentTime: this.currentTime,
 					fps: this.fps,
 				})
 
@@ -256,7 +256,7 @@ class Timeline extends Emitter<ITimelineEvents> {
 	 * @returns {number}
 	 */
 	public getCurrentFrame(): number {
-		return this.current_frame
+		return this.currentFrame
 	}
 
 	/**
@@ -286,12 +286,12 @@ class Timeline extends Emitter<ITimelineEvents> {
 	 * @param {number} frame
 	 */
 	public setFrame(frame: number): void {
-		this.current_frame = mod(frame, this.sequence.frames)
-		this.current_time = this.getFrameTime(this.current_frame)
+		this.currentFrame = mod(frame, this.sequence.frames)
+		this.currentTime = this.getFrameTime(this.currentFrame)
 
 		this.dispatch('timeline:progress', {
-			current_frame: this.current_frame,
-			current_time: this.current_time,
+			currentFrame: this.currentFrame,
+			currentTime: this.currentTime,
 			fps: this.fps,
 		})
 	}
@@ -311,7 +311,7 @@ class Timeline extends Emitter<ITimelineEvents> {
 	 * @returns {number}
 	 */
 	public getTime(): number {
-		return this.current_time
+		return this.currentTime
 	}
 
 	/**
@@ -322,12 +322,12 @@ class Timeline extends Emitter<ITimelineEvents> {
 	public setTime(time: number): void {
 		time = mod(time, this.sequence.duration)
 
-		this.current_time = time
-		this.current_frame = this.getFrameAtTime(time)
+		this.currentTime = time
+		this.currentFrame = this.getFrameAtTime(time)
 
 		this.dispatch('timeline:progress', {
-			current_frame: this.current_frame,
-			current_time: this.current_time,
+			currentFrame: this.currentFrame,
+			currentTime: this.currentTime,
 			fps: this.fps,
 		})
 	}
