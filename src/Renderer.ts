@@ -1,6 +1,6 @@
 import { createFFmpeg, FFmpeg } from '@ffmpeg/ffmpeg'
-import { now } from '@urpflanze/core'
-import { Canvas, JpegConfig, PdfConfig, PngConfig } from 'canvas'
+import { clamp, now } from '@urpflanze/core'
+import { Canvas, JpegConfig, PngConfig } from 'canvas'
 import * as JSZip from 'jszip'
 import BrowserDrawerCanvas from './browser'
 import type { DrawerCanvas } from './DrawerCanvas'
@@ -9,7 +9,7 @@ import { IRendererEvents, TRendererVideoType } from './types'
 import { bBrowser, bNode } from './utils'
 
 type BoB = Blob | Buffer
-type OoQ = PngConfig | JpegConfig | PdfConfig | number
+type OoQ = PngConfig | JpegConfig | number
 
 class Renderer extends Emitter<IRendererEvents> {
 	private ffmpeg: FFmpeg | undefined
@@ -36,7 +36,7 @@ class Renderer extends Emitter<IRendererEvents> {
 	 */
 	public async zip(
 		imagesType: 'image/jpeg' | 'image/png' = 'image/png',
-		quality: number = 1,
+		quality = 1,
 		framesForChunk = 600
 	): Promise<Array<Uint8Array>> {
 		const startTime = now()
@@ -99,7 +99,7 @@ class Renderer extends Emitter<IRendererEvents> {
 	 */
 	public async render(
 		type: TRendererVideoType = 'video/mp4',
-		quality: number = 1,
+		quality = 1,
 		ffmpegLogger?: (logParams: { type: string; message: string }) => any,
 		ffmpegProgress?: (progressParams: { ratio: number }) => any
 	): Promise<Uint8Array> {
@@ -288,14 +288,32 @@ class Renderer extends Emitter<IRendererEvents> {
 	 * @param optionsOrQuality
 	 * @returns
 	 */
-	private blobOrBuffer(mime: 'image/png' | 'image/jpeg' | 'application/pdf', optionsOrQuality: OoQ): Promise<BoB> {
+	private blobOrBuffer(mime: 'image/png' | 'image/jpeg', optionsOrQuality: OoQ = 1): Promise<BoB> {
 		const canvas = this.drawer.getCanvas()
 		if (canvas === null) throw new Error('Canvas not setted into Drawer')
 
 		if (bNode) {
 			// TODO default node quality for jpeg and png
-			// @ts-ignore
-			return Promise.resolve((canvas as Canvas).toBuffer(mime, optionsOrQuality))
+			switch (mime) {
+				case 'image/png': {
+					const pngConf: PngConfig =
+						typeof optionsOrQuality === 'number'
+							? {
+									compressionLevel: (9 - clamp(0, 1, optionsOrQuality) * 9) as 0 | 1 | 5 | 2 | 3 | 4 | 6 | 7 | 8 | 9,
+							  }
+							: (optionsOrQuality as PngConfig)
+					return Promise.resolve((canvas as Canvas).toBuffer(mime, pngConf))
+				}
+				case 'image/jpeg': {
+					const jpegConf: JpegConfig =
+						typeof optionsOrQuality === 'number'
+							? {
+									quality: optionsOrQuality,
+							  }
+							: (optionsOrQuality as JpegConfig)
+					return Promise.resolve((canvas as Canvas).toBuffer(mime, jpegConf))
+				}
+			}
 		}
 
 		if (canvas instanceof OffscreenCanvas) {
