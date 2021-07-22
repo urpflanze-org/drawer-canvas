@@ -61,6 +61,7 @@ class Renderer extends Emitter<IRendererEvents> {
 
 					const blob = await this.frame(frame, imagesType, quality)
 					const buffer = (await (bNode ? blob : (blob as Blob).arrayBuffer())) as Buffer | ArrayBuffer
+
 					zip.file(frameName, new Uint8Array(buffer, 0, buffer.byteLength))
 
 					const currentTime = now()
@@ -68,8 +69,8 @@ class Renderer extends Emitter<IRendererEvents> {
 					totalRenderTime += renderTime
 
 					this.dispatch('renderer:zip_progress', {
-						chunk,
-						frame,
+						chunk: chunk + 1,
+						frame: frame + 1,
 						totalFrames,
 						framesForChunk,
 						totalChunks: chunks,
@@ -144,7 +145,7 @@ class Renderer extends Emitter<IRendererEvents> {
 
 			this.dispatch('renderer:video_progress', {
 				totalFrames,
-				frame,
+				frame: frame + 1,
 				renderTime,
 				duration,
 				remainingTime: (totalFrames - frame) * (totalRenderTime / (frame + 1)),
@@ -267,7 +268,7 @@ class Renderer extends Emitter<IRendererEvents> {
 	 * @param optionsOrQuality
 	 * @returns
 	 */
-	private toDataUrl(mime: 'image/png' | 'image/jpeg' | 'application/pdf', optionsOrQuality: OoQ = 1): null | string {
+	private toDataUrl(mime: 'image/png' | 'image/jpeg', optionsOrQuality: OoQ = 1): null | string {
 		const canvas = this.drawer.getCanvas()
 
 		if (canvas) {

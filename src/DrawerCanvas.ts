@@ -40,8 +40,8 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 		scene?: Scene,
 		canvasOrContainer?: HTMLElement | DCanvas,
 		drawerOptions?: IDrawerCanvasOptions,
-		framerate = 60,
-		duration = 6000
+		duration = 6000,
+		framerate = 60
 	) {
 		super()
 

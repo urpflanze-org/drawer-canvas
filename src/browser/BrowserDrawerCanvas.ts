@@ -4,7 +4,7 @@ import { DrawerCanvas } from '../DrawerCanvas'
 import { bBrowser } from '../utils'
 
 class BrowserDrawerCanvas extends DrawerCanvas {
-	protected dpi: number = 1
+	protected dpi = 1
 
 	protected animation_id: number | null
 	protected draw_id: number | null
@@ -14,8 +14,8 @@ class BrowserDrawerCanvas extends DrawerCanvas {
 		scene?: Scene,
 		canvasOrContainer?: HTMLElement | HTMLCanvasElement | OffscreenCanvas,
 		drawerOptions?: IDrawerCanvasOptions & { dpi?: number },
-		framerate = 60,
-		duration = 6000
+		duration = 6000,
+		framerate = 60
 	) {
 		super(scene, canvasOrContainer, drawerOptions, framerate, duration)
 

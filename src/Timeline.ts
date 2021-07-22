@@ -46,7 +46,7 @@ class Timeline extends Emitter<ITimelineEvents> {
 
 	private sequence: ISequenceMeta
 
-	constructor(duration = 60000, framerate = 60) {
+	constructor(duration = 60000, framerate = 30) {
 		super()
 
 		this.sequence = {
@@ -83,15 +83,20 @@ class Timeline extends Emitter<ITimelineEvents> {
 	 *
 	 * @param {number} duration in ms
 	 * @param {number} framerate
+	 * @param {number} atTime
 	 */
-	public setSequence(duration: number, framerate: number): void {
+	public setSequence(duration: number, framerate: number, atTime?: number): void {
 		this.sequence.duration = duration
 		this.sequence.framerate = framerate
 
 		this.tick_time = 1000 / this.sequence.framerate
 		this.sequence.frames = Math.round((this.sequence.duration / 1000) * this.sequence.framerate)
 
-		this.dispatch('timeline:update_sequence', this.getSequence())
+		if (typeof atTime !== 'undefined') {
+			this.setTime(atTime)
+		} else {
+			this.dispatch('timeline:update_sequence', this.getSequence())
+		}
 	}
 
 	/**
