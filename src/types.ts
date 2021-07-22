@@ -65,16 +65,6 @@ export interface IDrawerCanvasEvents {
 	'drawer-canvas:resize': void
 }
 
-/**
- * @category Services.Drawer
- */
-export interface IDrawerSVGEvents {
-	'drawer-svg:before_draw': {
-		currentFrame: number
-		currentTime: number
-	}
-}
-
 type TCanvasContexComposite =
 	| 'source-over'
 	| 'source-in'
