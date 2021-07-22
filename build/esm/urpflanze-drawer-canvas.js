@@ -1,5 +1,5 @@
 /*!
- * @license Urpflanze DrawerCanvas v"0.1.0"
+ * @license Urpflanze DrawerCanvas v"0.1.1"
  * urpflanze-drawer-canvas.js
  *
  * Github: https://github.com/urpflanze-org/drawer-canvas
