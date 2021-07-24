@@ -32,12 +32,12 @@ You can see a preview [here](https://editor.urpflanze.org)
 - [Donate](#donate)
 - [Menu](#menu)
 - [Installation](#installation)
-- [Usage](#usage)
-	- [BrowserDrawerCanvas](#browserdrawercanvas)
-		- [Timeline and Animation](#timeline-and-animation)
-	- [Renderer](#renderer)
-		- [Video](#video)
-		- [ZIP](#zip)
+- [BrowserDrawerCanvas](#browserdrawercanvas)
+	- [Timeline and Animation](#timeline-and-animation)
+- [Renderer](#renderer)
+	- [Video](#video)
+	- [ZIP](#zip)
+- [Renderer events](#renderer-events)
 - [DrawerOptions](#draweroptions)
 
 ## Installation
@@ -84,9 +84,7 @@ Otherwise you can use from the browser using a CDN
 </script>
 ```
 
-## Usage
-
-### BrowserDrawerCanvas
+## BrowserDrawerCanvas
 
 You can render the scene on canvas using the `draw` method
 
@@ -102,7 +100,7 @@ drawer.draw()
 
 ```
 
-#### Timeline and Animation
+### Timeline and Animation
 
 You can set animation duration and FPS using the `timeline` object
 
@@ -129,11 +127,11 @@ drawer.startAnimation()
 // drawer.stopAnimation(): stop the animation and return to the start
 ```
 
-### Renderer
+## Renderer
 
 You can export a frame using the `frame` or` frameAtTime` methods, export a ZIP (using [JSZip](https://github.com/Stuk/jszip)) containing the frames (jpeg or png), export a video (using [FFMPEG](https://github.com/ffmpegwasm/ffmpeg.wasm)) (mp4, webp or gif).
 
-#### Video
+### Video
 
 Example of export video in a browser:
 
@@ -190,7 +188,7 @@ renderer.render('video/mp4', 1).then(buffer => {
 node --experimental-wasm-threads --experimental-wasm-bulk-memory [name].js
 ```
 
-#### ZIP
+### ZIP
 
 Example of export ZIP in a browser:
 
@@ -208,6 +206,39 @@ renderer.zip('image/png' /*, quality, framesForChunk */).then(chunks => {
 		document.body.appendChild(a)
 	})
 })
+```
+
+## Renderer events
+
+You can attach functions to events called when rendering with the 'attach' method:
+
+```javascript
+const renderer = new Renderer(drawer)
+
+renderer.attach('[eventName]', eventArgs => console.log(eventArgs))
+```
+
+| Event Name               | Description                                                   |
+| ------------------------ | ------------------------------------------------------------- |
+| renderer:zip_start       | Called when start ZIP rendering                               |
+| renderer:zip_progress    | Called each frame render                                      |
+| renderer:zip_preparing   | Called when each frame is rendered and ZIP generation start   |
+| renderer:video_init      | Called when start video rendering before loading FFmpeg.wasm  |
+| renderer:video_start     | Called when FFmpeg.wasm is loaded                             |
+| renderer:video_progress  | Called each frame render                                      |
+| renderer:video_preparing | Called when each frame is rendered and video generation start |
+
+Quando renderizzi un video puoi intercettare i log di FFmpeg passando gli argomenti al metodo `render`
+
+```javascript
+const renderer = new Renderer(drawer)
+
+renderer.render(
+	'gif',
+	1,
+	e => console.log('ffmpeg log', e),
+	e => console.log('ffmpeg progress', e)
+)
 ```
 
 ## DrawerOptions
