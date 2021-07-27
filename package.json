@@ -3,7 +3,7 @@
 	"version": "0.1.2",
 	"description": "Draw Urpflanze scene in browser or Node with canvas",
 	"license": "GPL-3.0-or-later",
-	"docs": "https://docs.urpflanze.org/drawer-canvas",
+	"docs": "https://docs.urpflanze.org/drawer-canvas/",
 	"keywords": [
 		"urpflanze",
 		"canvas"
@@ -24,7 +24,7 @@
 		"email": "gennaro.bs@gmail.com",
 		"url": "https://github.com/genbs"
 	},
-	"homepage": "https://github.com/urpflanze-org/drawer-canvas",
+	"homepage": "https://github.com/urpflanze-org/drawer-canvas/",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/urpflanze-org/drawer-canvas.git"
