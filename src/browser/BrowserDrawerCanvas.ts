@@ -14,10 +14,10 @@ class BrowserDrawerCanvas extends DrawerCanvas {
 		scene?: Scene,
 		canvasOrContainer?: HTMLElement | HTMLCanvasElement | OffscreenCanvas,
 		drawerOptions?: IDrawerCanvasOptions & { dpi?: number },
-		duration = 6000,
+		duration = 60000,
 		framerate = 60
 	) {
-		super(scene, canvasOrContainer, drawerOptions, framerate, duration)
+		super(scene, canvasOrContainer, drawerOptions, duration, framerate)
 
 		this.dpi = drawerOptions?.dpi || 1
 
