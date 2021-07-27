@@ -40,7 +40,7 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 		scene?: Scene,
 		canvasOrContainer?: HTMLElement | DCanvas,
 		drawerOptions?: IDrawerCanvasOptions,
-		duration = 6000,
+		duration = 60000,
 		framerate = 60
 	) {
 		super()
@@ -122,7 +122,6 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 
 			this.context = this.canvas.getContext('2d', {
 				alpha: true,
-				// @ts-ignore
 				// desynchronized: true,
 			}) as CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D | null
 		}

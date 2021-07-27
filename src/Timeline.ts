@@ -46,7 +46,7 @@ class Timeline extends Emitter<ITimelineEvents> {
 
 	private sequence: ISequenceMeta
 
-	constructor(duration = 6000, framerate = 30) {
+	constructor(duration = 60000, framerate = 30) {
 		super()
 
 		this.sequence = {
