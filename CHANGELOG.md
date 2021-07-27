@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/urpflanze-org/drawer-canvas/compare/v0.1.1...v0.1.3) (2021-07-27)
+
+
+### Bug Fixes
+
+* **drawer:** :bug: fix BrowserDrawerCanvas default duration and framerate ([68c2287](https://github.com/urpflanze-org/drawer-canvas/commits/68c22873b2506f79f71b32d1ad9f79f5bb5ce3c8))
+
 ### 0.1.1 (2021-07-22)
 
 ### Features
