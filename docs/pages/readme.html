@@ -1,0 +1,305 @@
+<p><img height="60" src="https://raw.githubusercontent.com/urpflanze-org/core/master/docs/assets/images/logo-for-github.svg"></p>
+<h2 id="synopsis">Synopsis</h2>
+<p>This package is used to draw a scene created with the <a href="https://github.com/urpflanze-org/core">Urpflanze Core</a> on Canvas.</p>
+<p>You can export a single frame or an animation in ZIP (frames in png or jpg), video (mp4 or webp) or in GIF.</p>
+<p>You can use it in the browser (Canvas, OffscreenCanvas, ServiceWorker) or in Node.</p>
+<h2 id="donate">Donate</h2>
+<p>I am trying to create a tool for those who want to approach the world of programming
+or for programmers who want to approach the world of creative coding.</p>
+<p>I have spent a lot of time and will spend more to support this project.
+I also have in mind a <strong><a href="https://github.com/urpflanze-org/editor">web editor</a></strong> (open-source) where you can use the features of this library in the browser.</p>
+<p>You can see a preview <a href="https://editor.urpflanze.org">here</a></p>
+<p><a href="https://www.paypal.me/genbs"><img src="https://img.shields.io/badge/donate-paypal-003087.svg?logo=paypal" alt="" /></a>
+<a href="https://ko-fi.com/urpflanze"><img src="https://img.shields.io/badge/donate-ko--fi-29abe0.svg?logo=ko-fi" alt="" /></a></p>
+<p><a href="https://explorer.btc.com/btc/address/1CSQq4aMmsA71twvyZHZCjmeB2AmQGCPNq"><img src="https://img.shields.io/badge/bitcoin-1CSQq4aMmsA71twvyZHZCjmeB2AmQGCPNq-f7931a.svg?logo=bitcoin" alt="" /></a>
+<a href="https://etherscan.io/address/0x9086c4bb7015c1d6dc79162d02e7e1239c982c01"><img src="https://img.shields.io/badge/ethereum-0x9086c4bb7015c1d6dc79162d02e7e1239c982c01-ecf0f1.svg?logo=ethereum" alt="" /></a></p>
+<hr />
+<h2 id="menu">Menu</h2>
+<ul>
+<li><a href="#synopsis">Synopsis</a></li>
+<li><a href="#donate">Donate</a></li>
+<li><a href="#menu">Menu</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#browserdrawercanvas">BrowserDrawerCanvas</a><ul>
+<li><a href="#timeline-and-animation">Timeline and Animation</a></li></ul></li>
+<li><a href="#renderer">Renderer</a><ul>
+<li><a href="#video">Video</a></li>
+<li><a href="#zip">ZIP</a></li></ul></li>
+<li><a href="#renderer-events">Renderer events</a></li>
+<li><a href="#draweroptions">DrawerOptions</a></li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>You can install the library with the command:</p>
+<pre class="prettyprint"><code class="bash language-bash">npm i @urpflanze/drawer-canvas --save
+</code></pre>
+<p>And import into your project</p>
+<pre class="prettyprint"><code class="javascript language-javascript">/**
+ * Full importing
+ */
+import { BrowserDrawerCanvas, DrawerCanvas } from '@urpflanze/drawer-canvas'
+
+const scene = ... // Urpflanze Scene
+
+const drawer = new BrowserDrawerCanvas(scene, ...) // for browser
+// const drawer = new DrawerCanvas(scene, ...) for node
+</code></pre>
+<p>Otherwise you can use from the browser using a CDN</p>
+<pre class="prettyprint"><code class="html language-html">&lt;!-- ES Modules --&gt;
+&lt;script type="module"&gt;
+    import * as Urpflanze from 'https://esm.run/@urpflanze/core'
+    import DrawerCanvas, { ... } from 'https://esm.run/@urpflanze/drawer-canvas'
+
+    const scene = new Urpflanze.Scene()
+    const drawer = new DrawerCanvas(scene, document.body) // as BrowserDrawerCanvas
+&lt;/script&gt;
+
+&lt;!-- UMD --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/@urpflanze/core"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/@urpflanze/drawer-canvas"&gt;&lt;/script&gt;
+&lt;script&gt;
+    const scene = new Urpflanze.Scene()
+    const drawer = new DrawerCanvas.default(scene, ...) // or DrawerCanvas.BrowserDrawerCanvas
+&lt;/script&gt;
+</code></pre>
+<h2 id="browserdrawercanvas">BrowserDrawerCanvas</h2>
+<p>You can render the scene on canvas using the <code>draw</code> method</p>
+<pre class="prettyprint"><code class="javascript language-javascript">// Creating a Scene
+const scene = new Urpflanze.Scene()
+scene.add(...)
+
+// Draw the scene
+const drawer = new DrawerCanvas(scene, document.body) // The canvas will be added to body
+drawer.draw()
+</code></pre>
+<h3 id="timelineandanimation">Timeline and Animation</h3>
+<p>You can set animation duration and FPS using the <code>timeline</code> object</p>
+<pre class="prettyprint"><code class="javascript language-javascript">const drawer = new DrawerCanvas(scene, document.body)
+
+drawer.timeline.setDuration([number in milliseconds])
+drawer.timeline.setFramerate([number])
+
+// draw at time
+drawer.timeline.setTime([number in milliseconds])
+</code></pre>
+<p>By default the duration of an animation is 1 minute (60000 milliseconds) the framerate is 30 instead.</p>
+<p>To start the animation you can use the <code>startAnimation</code> method:</p>
+<pre class="prettyprint"><code class="javascript language-javascript">const drawer = new DrawerCanvas(scene, document.body)
+drawer.startAnimation()
+
+// drawer.pauseAnimation(): stop the animation
+// drawer.playAnimation(): start animation if is stopped or paused
+// drawer.stopAnimation(): stop the animation and return to the start
+</code></pre>
+<h2 id="renderer">Renderer</h2>
+<p>You can export a frame using the <code>frame</code> or<code>frameAtTime</code> methods, export a ZIP (using <a href="https://github.com/Stuk/jszip">JSZip</a>) containing the frames (jpeg or png), export a video (using <a href="https://github.com/ffmpegwasm/ffmpeg.wasm">FFMPEG</a>) (mp4, webp or gif).</p>
+<h3 id="video">Video</h3>
+<p>Example of export video in a browser:</p>
+<pre class="prettyprint"><code class="javascript language-javascript">const scene = new Urpflanze.Scene()
+
+scene.add(
+    new Urpflanze.Rect({
+        // rotate from 0 to 45 deg in 3000ms
+        rotateZ: () =&gt; -(Math.cos((scene.currentTime * Urpflanze.PI2) / 6000) * 0.5 + 0.5) * (Math.PI / 2),
+    })
+)
+
+const drawer = new DrawerCanvas(scene, document.body, {}, 3000 /* duration */, 24 /* fps */)
+
+const renderer = new Renderer(drawer)
+renderer.render('video/mp4', 1).then(buffer =&gt; {
+    const blob = new Blob([buffer], { type: 'video/mp4' })
+    const videoUrl = window.URL.createObjectURL(blob)
+    const videoElement = document.createElement('video')
+    videoElement.setAttribute('src', videoUrl)
+    videoElement.setAttribute('loop', 'true')
+    videoElement.setAttribute('controls', 'true')
+    document.body.appendChild(videoElement)
+})
+</code></pre>
+<p>Example of export video in node:</p>
+<pre class="prettyprint"><code class="javascript language-javascript">const fs = require('fs')
+
+const scene = new Urpflanze.Scene()
+
+scene.add(
+    new Urpflanze.Rect({
+        // rotate from 0 to 45 deg in 3000ms
+        rotateZ: () =&gt; -(Math.cos((scene.currentTime * Urpflanze.PI2) / 6000) * 0.5 + 0.5) * (Math.PI / 2),
+    })
+)
+
+const drawer = new DrawerCanvas(scene, undefined, {}, 3000 /* duration */, 24 /* fps */)
+
+const renderer = new Renderer(drawer /*, ffmpegCorePath*/)
+renderer.render('video/mp4', 1).then(buffer =&gt; {
+    fs.writeFileSync('video.mp4', buffer)
+    process.exit()
+})
+</code></pre>
+<blockquote>
+  <p>You need to run with this flags for use FFMPEG</p>
+</blockquote>
+<pre class="prettyprint"><code class="bash language-bash">node --experimental-wasm-threads --experimental-wasm-bulk-memory [name].js
+</code></pre>
+<h3 id="zip">ZIP</h3>
+<p>Example of export ZIP in a browser:</p>
+<pre class="prettyprint"><code class="javascript language-javascript">// After creating a scene
+const drawer = new DrawerCanvas(scene, document.body, {}, 3000, 10)
+const renderer = new Renderer(drawer)
+renderer.zip('image/png' /*, quality, framesForChunk */).then(chunks =&gt; {
+    chunks.forEach((chunk, index) =&gt; {
+        const blob = new Blob([chunk], { type: 'application/zip' })
+        const chunkURL = window.URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.innerText = 'download_' + index + '.zip'
+        a.setAttribute('href', chunkURL)
+        document.body.appendChild(a)
+    })
+})
+</code></pre>
+<h2 id="rendererevents">Renderer events</h2>
+<p>You can attach functions to events called when rendering with the 'attach' method:</p>
+<pre class="prettyprint"><code class="javascript language-javascript">const renderer = new Renderer(drawer)
+
+renderer.attach('[eventName]', eventArgs =&gt; console.log(eventArgs))
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Event Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>renderer:zip_start</td>
+<td>Called when start ZIP rendering</td>
+</tr>
+<tr>
+<td>renderer:zip_progress</td>
+<td>Called each frame render</td>
+</tr>
+<tr>
+<td>renderer:zip_preparing</td>
+<td>Called when each frame is rendered and ZIP generation start</td>
+</tr>
+<tr>
+<td>renderer:video_init</td>
+<td>Called when start video rendering before loading FFmpeg.wasm</td>
+</tr>
+<tr>
+<td>renderer:video_start</td>
+<td>Called when FFmpeg.wasm is loaded</td>
+</tr>
+<tr>
+<td>renderer:video_progress</td>
+<td>Called each frame render</td>
+</tr>
+<tr>
+<td>renderer:video_preparing</td>
+<td>Called when each frame is rendered and video generation start</td>
+</tr>
+</tbody>
+</table>
+<p>Quando renderizzi un video puoi intercettare i log di FFmpeg passando gli argomenti al metodo <code>render</code></p>
+<pre class="prettyprint"><code class="javascript language-javascript">const renderer = new Renderer(drawer)
+
+renderer.render(
+    'gif',
+    1,
+    e =&gt; console.log('ffmpeg log', e),
+    e =&gt; console.log('ffmpeg progress', e)
+)
+</code></pre>
+<h2 id="draweroptions">DrawerOptions</h2>
+<p>Any parameter is optional</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>time</td>
+<td>number</td>
+<td>0</td>
+<td>Draw at time</td>
+</tr>
+<tr>
+<td>noBackground</td>
+<td>boolean</td>
+<td>false</td>
+<td>Disable Scene background</td>
+</tr>
+<tr>
+<td>ghosts</td>
+<td>number</td>
+<td>0</td>
+<td>Number of previus frame based on <code>ghostSkipTime</code> or <code>ghostSkipFunction</code></td>
+</tr>
+<tr>
+<td>ghostAlpha</td>
+<td>boolean</td>
+<td>true</td>
+<td>Enable ghost apha</td>
+</tr>
+<tr>
+<td>ghostSkipTime</td>
+<td>number</td>
+<td>30</td>
+<td>Delay of each frame</td>
+</tr>
+<tr>
+<td>ghostSkipFunction</td>
+<td>Function</td>
+<td>undefined</td>
+<td>Dynamic <code>ghostSkipTime</code></td>
+</tr>
+<tr>
+<td>width</td>
+<td>number</td>
+<td>scene width</td>
+<td>The canvas width</td>
+</tr>
+<tr>
+<td>height</td>
+<td>number</td>
+<td>scene height</td>
+<td>The canvas height</td>
+</tr>
+<tr>
+<td>clear</td>
+<td>boolean</td>
+<td>true</td>
+<td>Clear canvas</td>
+</tr>
+<tr>
+<td>simmetricLines</td>
+<td>number</td>
+<td>undefined</td>
+<td>Utility lines</td>
+</tr>
+<tr>
+<td>sceneFit</td>
+<td>cover | contain | none</td>
+<td>contain</td>
+<td>Fit scene into canvas</td>
+</tr>
+<tr>
+<td>backgroundImage</td>
+<td>CanvasImageSource</td>
+<td>undefined</td>
+<td>Draw image after scene background</td>
+</tr>
+<tr>
+<td>backgroundImageFit</td>
+<td>cover | contain | none</td>
+<td>cover</td>
+<td><code>backgroundImage</code> fit</td>
+</tr>
+</tbody>
+</table>

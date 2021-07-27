@@ -14,11 +14,14 @@ import {
 } from './types'
 import { bBrowser, bWorker, fit } from './utils'
 
-type DCanvas = Canvas | HTMLCanvasElement | OffscreenCanvas
+/**
+ * @category DrawerCanvas
+ */
+export type DCanvas = Canvas | HTMLCanvasElement | OffscreenCanvas
 
 /**
  *
- * @category Services.Drawer
+ * @category DrawerCanvas
  * @extends {Emitter<DrawerCanvasEvents>}
  */
 class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {

@@ -3,6 +3,12 @@ import { IDrawerCanvasOptions } from '../types'
 import { DrawerCanvas } from '../DrawerCanvas'
 import { bBrowser } from '../utils'
 
+/**
+ *
+ * @category DrawerCanvas
+ * @class BrowserDrawerCanvas
+ * @extends {DrawerCanvas}
+ */
 class BrowserDrawerCanvas extends DrawerCanvas {
 	protected dpi = 1
 
@@ -49,6 +55,8 @@ class BrowserDrawerCanvas extends DrawerCanvas {
 		if (typeof sceneFit !== 'undefined') {
 			this.drawerOptions.sceneFit = sceneFit
 		}
+
+		this.dispatch('drawer-canvas:resize')
 	}
 
 	/**

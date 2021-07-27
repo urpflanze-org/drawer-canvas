@@ -6,7 +6,7 @@ import { ISequenceMeta, ITimelineEvents } from './types'
  * Is used for sequence time management.
  * It is necessary to set the duration and the number of frames per second (frame rate).
  *
- * @category Services.Timeline
+ * @category Timeline
  * @class Timeline
  * @extends {Emitter<ITimelineEvents>}
  */

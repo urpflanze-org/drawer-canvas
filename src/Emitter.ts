@@ -1,7 +1,7 @@
 /**
  * Class used for emit and dispatch events
  *
- * @category Services.Emitter
+ * @category Emitter
  * @abstract
  * @class Emitter
  * @template EventTypes
@@ -53,7 +53,7 @@ abstract class Emitter<EventTypes> {
 	 * @memberof Emitter
 	 */
 	public dispatch(e: keyof EventTypes, params: EventTypes[keyof EventTypes]): void {
-		if (e in this.callbacks) {
+		if (e in this.callbacks && this.callbacks[e].length > 0) {
 			for (let i = 0, len = this.callbacks[e].length; i < len; i++) if (this.callbacks[e][i](params) === false) break
 		}
 	}

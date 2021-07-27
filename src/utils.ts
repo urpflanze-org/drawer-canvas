@@ -8,6 +8,18 @@ export const bBrowser = typeof window !== 'undefined' && typeof window.document 
 export const bWorker =
 	typeof self === 'object' && ['ServiceWorkerGlobalScope', 'DedicatedWorkerGlobalScope'].includes(self.constructor.name)
 
+/**
+ * Utiltites
+ *
+ * @category Utilities
+ * @export
+ * @param {number} sourceWidth
+ * @param {number} sourceHeight
+ * @param {number} destWidth
+ * @param {number} destHeight
+ * @param {('cover' | 'contain' | 'none')} [fit='none']
+ * @return {*}  {{ x: number; y: number; width: number; height: number; scale: number }}
+ */
 export function fit(
 	sourceWidth: number,
 	sourceHeight: number,

@@ -3,7 +3,7 @@
 	"version": "0.1.2",
 	"description": "Draw Urpflanze scene in browser or Node with canvas",
 	"license": "GPL-3.0-or-later",
-	"docs": "",
+	"docs": "https://docs.urpflanze.org/drawer-canvas",
 	"keywords": [
 		"urpflanze",
 		"canvas"
@@ -53,6 +53,7 @@
 		"watch": "tsc --watch",
 		"lint": "eslint src --ext .ts",
 		"prepublishOnly": "npm run build",
+		"generate-docs": "npx generate-docs",
 		"test": "tap --node-arg=--experimental-wasm-threads --node-arg=--experimental-wasm-bulk-memory",
 		"release": "standard-version",
 		"release:minor": "standard-version --release-as minor",
@@ -67,6 +68,7 @@
 	"devDependencies": {
 		"@types/tap": "^15.0.4",
 		"@typescript-eslint/eslint-plugin": "^4.28.4",
+		"@urpflanze/typedoc-docs": "^0.1.14",
 		"eslint": "^7.21.0",
 		"eslint-config-prettier": "^8.1.0",
 		"standard-version": "^9.3.1",

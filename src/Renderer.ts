@@ -8,9 +8,27 @@ import { Emitter } from './Emitter'
 import { IRendererEvents, TRendererVideoType } from './types'
 import { bBrowser, bNode } from './utils'
 
-type BoB = Blob | Buffer
-type OoQ = PngConfig | JpegConfig | number
+/**
+ * Blob or Buffer
+ *
+ * @category Renderer
+ */
+export type BoB = Blob | Buffer
 
+/**
+ * Options or Quality
+ *
+ * @category Renderer
+ */
+export type OoQ = PngConfig | JpegConfig | number
+
+/**
+ * The Renderer is a class for exporting the scene
+ *
+ * @category Renderer
+ * @class Renderer
+ * @extends {Emitter<IRendererEvents>}
+ */
 class Renderer extends Emitter<IRendererEvents> {
 	private ffmpeg: FFmpeg | undefined
 	private drawer: DrawerCanvas

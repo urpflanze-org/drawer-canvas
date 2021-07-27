@@ -1,16 +1,37 @@
 import { IBaseRepetition, IPropArguments } from '@urpflanze/core'
 
+/**
+ * @category DrawerCanvas
+ */
 export interface IDrawerPropArguments extends IPropArguments {}
 
+/**
+ *
+ * @category DrawerCanvas
+ * @export
+ * @interface IDrawerCanvasPropArguments
+ * @extends {IDrawerPropArguments}
+ */
 export interface IDrawerCanvasPropArguments extends IDrawerPropArguments {
+	/**
+	 * Canvas rendering context
+	 *
+	 * @type {(CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D)}
+	 */
 	canvasContext: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D
 }
 
+/**
+ * @category DrawerCanvas
+ */
 export type TDrawerCanvasProp<T> = T | { (propArguments: IDrawerCanvasPropArguments): T }
+/**
+ * @category DrawerCanvas
+ */
 export type TDrawerProp<T> = T | { (propArguments: IDrawerPropArguments): T }
 
 /**
- * @category Services.Drawer
+ * @category DrawerCanvas
  */
 export interface IDrawerCanvasStreamProps {
 	fill?: TDrawerCanvasProp<string | CanvasGradient | CanvasPattern>
@@ -31,7 +52,7 @@ export interface IDrawerCanvasStreamProps {
 }
 
 /**
- * @category Services.Drawer
+ * @category DrawerCanvas
  */
 export interface IDrawerCanvasOptions {
 	time?: number
@@ -53,15 +74,19 @@ export interface IDrawerCanvasOptions {
 }
 
 /**
- * @category Services.Drawer
+ * @category DrawerCanvas
  */
 export interface IDrawerCanvasEvents {
+	/**
+	 * Called before scene is drawn
+	 */
 	'drawer-canvas:before_draw': {
 		currentFrame: number
 		currentTime: number
 	}
-	'drawer-canvas:buffer_loaded': void
-	'drawer-canvas:buffer_flush': void
+	/**
+	 * Called after call .resize() method
+	 */
 	'drawer-canvas:resize': void
 }
 
@@ -94,7 +119,7 @@ type TCanvasContexComposite =
 	| 'luminosity'
 
 /**
- * @category Services.Drawer
+ * @category DrawerCanvas
  */
 export interface ISceneChildDrawerData {
 	highlighted?: boolean
@@ -104,11 +129,20 @@ export interface ISceneChildDrawerData {
 }
 
 /**
- * @category Services.Timeline
+ * @category Timeline
  */
 export interface ITimelineEvents {
+	/**
+	 * Called when sequence is update
+	 */
 	'timeline:update_sequence': ISequenceMeta
+	/**
+	 * Called when sequence is update
+	 */
 	'timeline:change_status': 'start' | 'stop' | 'pause'
+	/**
+	 * Called each animation tick
+	 */
 	'timeline:progress': {
 		currentFrame: number
 		currentTime: number
@@ -117,7 +151,7 @@ export interface ITimelineEvents {
 }
 
 /**
- * @category Services.Timeline
+ * @category Timeline
  */
 export interface ISequenceMeta {
 	duration: number
@@ -125,10 +159,26 @@ export interface ISequenceMeta {
 	framerate: number
 }
 
+/**
+ * @category Renderer
+ */
 export type TRendererVideoType = 'video/webm' | 'video/mp4' | 'gif'
 
+/**
+ *
+ * @category Renderer
+ * @export
+ * @interface IRendererEvents
+ */
 export interface IRendererEvents {
+	/**
+	 * Called when start ZIP rendering
+	 */
 	'renderer:zip_start': { chunks: number; framesForChunk: number; totalFrames: number }
+
+	/**
+	 * Called each frame render
+	 */
 	'renderer:zip_progress': {
 		chunk: number
 		frame: number
@@ -139,9 +189,25 @@ export interface IRendererEvents {
 		remainingTime: number
 		elapsedTime: number
 	}
+
+	/**
+	 * Called when each frame is rendered and ZIP generation start
+	 */
 	'renderer:zip_preparing': void
+
+	/**
+	 * Called when start video rendering before loading FFmpeg.wasm
+	 */
 	'renderer:video_init': { totalFrames: number; duration: number; framerate: number; type: TRendererVideoType }
+
+	/**
+	 * Called when FFmpeg.wasm is loaded
+	 */
 	'renderer:video_start': { totalFrames: number; duration: number; framerate: number; type: TRendererVideoType }
+
+	/**
+	 * Called each frame render
+	 */
 	'renderer:video_progress': {
 		frame: number
 		duration: number
@@ -150,5 +216,9 @@ export interface IRendererEvents {
 		remainingTime: number
 		elapsedTime: number
 	}
+
+	/**
+	 * Called when each frame is rendered and video generation start
+	 */
 	'renderer:video_preparing': void
 }

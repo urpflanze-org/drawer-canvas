@@ -1,0 +1,4718 @@
+[
+	{
+		"name": "DrawerCanvas",
+		"type": "Class",
+		"order": 9999,
+		"source": {
+			"fileName": "src/DrawerCanvas.ts",
+			"line": 27,
+			"character": 18
+		},
+		"extends": [
+			"Emitter"
+		],
+		"constructor_ref": {
+			"parameters": [
+				{
+					"name": "scene",
+					"type": {
+						"type": "reference",
+						"name": "Scene"
+					},
+					"order": 9999,
+					"bOptional": true
+				},
+				{
+					"name": "canvasOrContainer",
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"name": "HTMLElement",
+								"type": "reference",
+								"order": 9999
+							},
+							{
+								"name": "DCanvas",
+								"type": "reference",
+								"order": 9999
+							}
+						]
+					},
+					"order": 9999,
+					"bOptional": true
+				},
+				{
+					"name": "drawerOptions",
+					"type": {
+						"type": "reference",
+						"id": 553,
+						"name": "IDrawerCanvasOptions"
+					},
+					"order": 9999,
+					"bOptional": true
+				},
+				{
+					"name": "duration",
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"defaultValue": "60000",
+					"order": 9999
+				},
+				{
+					"name": "framerate",
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"defaultValue": "60",
+					"order": 9999
+				}
+			]
+		},
+		"properties": [
+			{
+				"name": "animation_id",
+				"type": {
+					"type": "union",
+					"types": [
+						{
+							"type": "literal",
+							"value": null,
+							"order": 9999
+						},
+						{
+							"name": "number",
+							"type": "intrinsic",
+							"order": 9999
+						}
+					]
+				},
+				"order": 9999,
+				"bProtected": true
+			},
+			{
+				"name": "canvas",
+				"type": {
+					"type": "union",
+					"types": [
+						{
+							"name": "Canvas",
+							"type": "reference",
+							"order": 9999
+						},
+						{
+							"name": "HTMLCanvasElement",
+							"type": "reference",
+							"order": 9999
+						},
+						{
+							"name": "OffscreenCanvas",
+							"type": "reference",
+							"order": 9999
+						}
+					]
+				},
+				"order": 9999,
+				"bProtected": true
+			},
+			{
+				"name": "context",
+				"type": {
+					"type": "union",
+					"types": [
+						{
+							"type": "literal",
+							"value": null,
+							"order": 9999
+						},
+						{
+							"name": "CanvasRenderingContext2D",
+							"type": "reference",
+							"order": 9999
+						},
+						{
+							"name": "OffscreenCanvasRenderingContext2D",
+							"type": "reference",
+							"order": 9999
+						}
+					]
+				},
+				"order": 9999,
+				"bProtected": true
+			},
+			{
+				"name": "draw_id",
+				"type": {
+					"type": "union",
+					"types": [
+						{
+							"type": "literal",
+							"value": null,
+							"order": 9999
+						},
+						{
+							"name": "number",
+							"type": "intrinsic",
+							"order": 9999
+						}
+					]
+				},
+				"order": 9999,
+				"bProtected": true
+			},
+			{
+				"name": "drawerOptions",
+				"type": {
+					"type": "intersection",
+					"types": [
+						{
+							"name": "Required",
+							"type": "reference",
+							"typeArguments": [
+								{
+									"type": "reference",
+									"typeArguments": [
+										{
+											"type": "reference",
+											"id": 553,
+											"name": "IDrawerCanvasOptions"
+										},
+										{
+											"type": "union",
+											"types": [
+												{
+													"type": "literal",
+													"value": "backgroundImage"
+												},
+												{
+													"type": "literal",
+													"value": "ghostSkipFunction"
+												}
+											]
+										}
+									],
+									"name": "Omit"
+								}
+							],
+							"order": 9999
+						},
+						{
+							"type": "reflection",
+							"declaration": {
+								"id": 38,
+								"name": "__type",
+								"kind": 65536,
+								"kindString": "Type literal",
+								"flags": {},
+								"children": [
+									{
+										"id": 39,
+										"name": "backgroundImage",
+										"kind": 1024,
+										"kindString": "Property",
+										"flags": {
+											"isOptional": true
+										},
+										"sources": [
+											{
+												"fileName": "src/DrawerCanvas.ts",
+												"line": 30,
+												"character": 17
+											}
+										],
+										"type": {
+											"type": "reference",
+											"name": "CanvasImageSource"
+										}
+									},
+									{
+										"id": 40,
+										"name": "ghostSkipFunction",
+										"kind": 1024,
+										"kindString": "Property",
+										"flags": {
+											"isOptional": true
+										},
+										"sources": [
+											{
+												"fileName": "src/DrawerCanvas.ts",
+												"line": 31,
+												"character": 19
+											}
+										],
+										"type": {
+											"type": "reflection",
+											"declaration": {
+												"id": 41,
+												"name": "__type",
+												"kind": 65536,
+												"kindString": "Type literal",
+												"flags": {},
+												"signatures": [
+													{
+														"id": 42,
+														"name": "__type",
+														"kind": 4096,
+														"kindString": "Call signature",
+														"flags": {},
+														"parameters": [
+															{
+																"id": 43,
+																"name": "ghostRepetition",
+																"kind": 32768,
+																"kindString": "Parameter",
+																"flags": {},
+																"type": {
+																	"type": "reference",
+																	"name": "IBaseRepetition"
+																}
+															},
+															{
+																"id": 44,
+																"name": "currentTime",
+																"kind": 32768,
+																"kindString": "Parameter",
+																"flags": {},
+																"type": {
+																	"type": "intrinsic",
+																	"name": "number"
+																}
+															}
+														],
+														"type": {
+															"type": "intrinsic",
+															"name": "number"
+														}
+													}
+												]
+											}
+										}
+									}
+								],
+								"groups": [
+									{
+										"title": "Properties",
+										"kind": 1024,
+										"children": [
+											39,
+											40
+										]
+									}
+								]
+							},
+							"order": 9999
+						}
+					]
+				},
+				"order": 9999,
+				"bProtected": true
+			},
+			{
+				"name": "redraw_id",
+				"type": {
+					"type": "union",
+					"types": [
+						{
+							"type": "literal",
+							"value": null,
+							"order": 9999
+						},
+						{
+							"name": "number",
+							"type": "intrinsic",
+							"order": 9999
+						}
+					]
+				},
+				"order": 9999,
+				"bProtected": true
+			},
+			{
+				"name": "scene",
+				"type": {
+					"type": "reference",
+					"name": "Scene"
+				},
+				"order": 9999,
+				"bOptional": true,
+				"bProtected": true
+			},
+			{
+				"name": "timeline",
+				"type": {
+					"type": "reference",
+					"id": 296,
+					"name": "Timeline"
+				},
+				"order": 9999,
+				"bPublic": true
+			}
+		],
+		"methods": [
+			{
+				"name": "draw",
+				"parameters": [],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "getCanvas",
+				"description": "Return instance of canvas",
+				"parameters": [],
+				"return_type": {
+					"type": "union",
+					"types": [
+						{
+							"type": "reference",
+							"name": "Canvas"
+						},
+						{
+							"type": "reference",
+							"name": "HTMLCanvasElement"
+						},
+						{
+							"type": "reference",
+							"name": "OffscreenCanvas"
+						}
+					]
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "getOption",
+				"description": "Return option value or default",
+				"parameters": [
+					{
+						"name": "name",
+						"type": {
+							"type": "reference",
+							"name": "K"
+						},
+						"order": 9999
+					},
+					{
+						"name": "defaultValue",
+						"description": "\n",
+						"type": {
+							"type": "indexedAccess",
+							"indexType": {
+								"type": "reference",
+								"name": "K"
+							},
+							"objectType": {
+								"type": "reference",
+								"id": 553,
+								"name": "IDrawerCanvasOptions"
+							}
+						},
+						"order": 9999
+					}
+				],
+				"typeParameter": [
+					{
+						"id": 53,
+						"name": "K",
+						"kind": 131072,
+						"kindString": "Type parameter",
+						"flags": {},
+						"type": {
+							"type": "typeOperator",
+							"operator": "keyof",
+							"target": {
+								"type": "reference",
+								"id": 553,
+								"name": "IDrawerCanvasOptions"
+							}
+						}
+					}
+				],
+				"return_type": {
+					"type": "indexedAccess",
+					"indexType": {
+						"type": "reference",
+						"name": "K"
+					},
+					"objectType": {
+						"type": "reference",
+						"id": 553,
+						"name": "IDrawerCanvasOptions"
+					}
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "realDraw",
+				"parameters": [
+					{
+						"name": "options",
+						"type": {
+							"type": "intersection",
+							"types": [
+								{
+									"name": "IDrawerCanvasOptions",
+									"type": "reference",
+									"order": 9999
+								},
+								{
+									"type": "reflection",
+									"declaration": {
+										"id": 69,
+										"name": "__type",
+										"kind": 65536,
+										"kindString": "Type literal",
+										"flags": {},
+										"children": [
+											{
+												"id": 70,
+												"name": "ghostIndex",
+												"kind": 1024,
+												"kindString": "Property",
+												"flags": {
+													"isOptional": true
+												},
+												"sources": [
+													{
+														"fileName": "src/DrawerCanvas.ts",
+														"line": 230,
+														"character": 61
+													}
+												],
+												"type": {
+													"type": "intrinsic",
+													"name": "number"
+												}
+											}
+										],
+										"groups": [
+											{
+												"title": "Properties",
+												"kind": 1024,
+												"children": [
+													70
+												]
+											}
+										]
+									},
+									"order": 9999
+								}
+							]
+						},
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "setCanvas",
+				"description": "Create instance of canvas (HTMLCanvasElement in browser o Canvas in Node)",
+				"parameters": [
+					{
+						"name": "canvasOrContainer",
+						"type": {
+							"type": "union",
+							"types": [
+								{
+									"name": "HTMLElement",
+									"type": "reference",
+									"order": 9999
+								},
+								{
+									"name": "DCanvas",
+									"type": "reference",
+									"order": 9999
+								}
+							]
+						},
+						"order": 9999,
+						"bOptional": true
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "setScene",
+				"parameters": [
+					{
+						"name": "scene",
+						"type": {
+							"type": "reference",
+							"name": "Scene"
+						},
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "clear",
+				"description": "Clear canvas, draw background or image (and fit)",
+				"parameters": [
+					{
+						"name": "context",
+						"type": {
+							"type": "union",
+							"types": [
+								{
+									"name": "CanvasRenderingContext2D",
+									"type": "reference",
+									"order": 9999
+								},
+								{
+									"name": "OffscreenCanvasRenderingContext2D",
+									"type": "reference",
+									"order": 9999
+								}
+							]
+						},
+						"order": 9999
+					},
+					{
+						"name": "width",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					},
+					{
+						"name": "height",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					},
+					{
+						"name": "background",
+						"type": {
+							"type": "union",
+							"types": [
+								{
+									"name": "string",
+									"type": "intrinsic",
+									"order": 9999
+								},
+								{
+									"name": "boolean",
+									"type": "intrinsic",
+									"order": 9999
+								}
+							]
+						},
+						"order": 9999
+					},
+					{
+						"name": "backgroundImage",
+						"type": {
+							"type": "reference",
+							"name": "CanvasImageSource"
+						},
+						"order": 9999,
+						"bOptional": true
+					},
+					{
+						"name": "backgroundImageFit",
+						"description": "\n",
+						"type": {
+							"type": "union",
+							"types": [
+								{
+									"type": "literal",
+									"value": "cover",
+									"order": 9999
+								},
+								{
+									"type": "literal",
+									"value": "contain",
+									"order": 9999
+								},
+								{
+									"type": "literal",
+									"value": "none",
+									"order": 9999
+								}
+							]
+						},
+						"order": 9999,
+						"bOptional": true
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bStatic": true
+			},
+			{
+				"name": "drawSimmetricLines",
+				"description": "Draw utility lines",
+				"parameters": [
+					{
+						"name": "context",
+						"type": {
+							"type": "union",
+							"types": [
+								{
+									"name": "CanvasRenderingContext2D",
+									"type": "reference",
+									"order": 9999
+								},
+								{
+									"name": "OffscreenCanvasRenderingContext2D",
+									"type": "reference",
+									"order": 9999
+								}
+							]
+						},
+						"order": 9999
+					},
+					{
+						"name": "simmetricLines",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					},
+					{
+						"name": "width",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					},
+					{
+						"name": "height",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					},
+					{
+						"name": "color",
+						"description": "\n",
+						"type": {
+							"type": "intrinsic",
+							"name": "string"
+						},
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bStatic": true
+			},
+			{
+				"name": "getStreamDrawerProp",
+				"description": "Return a drawer value",
+				"parameters": [
+					{
+						"name": "shape",
+						"type": {
+							"type": "reference",
+							"typeArguments": [
+								{
+									"type": "intrinsic",
+									"name": "any"
+								},
+								{
+									"type": "intrinsic",
+									"name": "any"
+								},
+								{
+									"type": "reference",
+									"typeArguments": [
+										{
+											"type": "reference",
+											"typeArguments": [
+												{
+													"type": "reference",
+													"name": "IParentPropArguments"
+												}
+											],
+											"name": "IPropArguments"
+										}
+									],
+									"name": "IShapePrimitiveProps"
+								}
+							],
+							"name": "ShapePrimitive"
+						},
+						"order": 9999
+					},
+					{
+						"name": "key",
+						"type": {
+							"type": "typeOperator",
+							"operator": "keyof",
+							"target": {
+								"type": "reference",
+								"id": 537,
+								"name": "IDrawerCanvasStreamProps"
+							}
+						},
+						"order": 9999
+					},
+					{
+						"name": "propArguments",
+						"type": {
+							"type": "reference",
+							"id": 518,
+							"name": "IDrawerPropArguments"
+						},
+						"order": 9999
+					},
+					{
+						"name": "defaultValue",
+						"type": {
+							"type": "intrinsic",
+							"name": "any"
+						},
+						"order": 9999,
+						"bOptional": true
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "any"
+				},
+				"order": 9999,
+				"bStatic": true
+			},
+			{
+				"name": "ghostifyColor",
+				"description": "Create color based on ghostMultiplier",
+				"parameters": [
+					{
+						"name": "color",
+						"type": {
+							"type": "intrinsic",
+							"name": "any"
+						},
+						"order": 9999
+					},
+					{
+						"name": "ghostMultiplier",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "union",
+					"types": [
+						{
+							"type": "intrinsic",
+							"name": "undefined"
+						},
+						{
+							"type": "intrinsic",
+							"name": "string"
+						}
+					]
+				},
+				"order": 9999,
+				"bStatic": true
+			}
+		],
+		"category": "DrawerCanvas"
+	},
+	{
+		"name": "DCanvas",
+		"type": "Type",
+		"order": 9999,
+		"source": {
+			"fileName": "src/DrawerCanvas.ts",
+			"line": 20,
+			"character": 19
+		},
+		"parameter": {
+			"name": "DCanvas",
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"name": "Canvas",
+						"type": "reference",
+						"order": 9999
+					},
+					{
+						"name": "HTMLCanvasElement",
+						"type": "reference",
+						"order": 9999
+					},
+					{
+						"name": "OffscreenCanvas",
+						"type": "reference",
+						"order": 9999
+					}
+				]
+			},
+			"order": 9999
+		},
+		"category": "DrawerCanvas"
+	},
+	{
+		"name": "Emitter",
+		"type": "Class",
+		"order": 9999,
+		"source": {
+			"fileName": "src/Emitter.ts",
+			"line": 9,
+			"character": 22
+		},
+		"description": "Class used for emit and dispatch events",
+		"properties": [
+			{
+				"name": "callbacks",
+				"type": {
+					"type": "reference",
+					"typeArguments": [
+						{
+							"type": "typeOperator",
+							"operator": "keyof",
+							"target": {
+								"type": "reference",
+								"name": "EventTypes"
+							}
+						},
+						{
+							"type": "array",
+							"elementType": {
+								"type": "reflection",
+								"declaration": {
+									"id": 104,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"signatures": [
+										{
+											"id": 105,
+											"name": "__type",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"parameters": [
+												{
+													"id": 106,
+													"name": "args",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "indexedAccess",
+														"indexType": {
+															"type": "typeOperator",
+															"operator": "keyof",
+															"target": {
+																"type": "reference",
+																"name": "EventTypes"
+															}
+														},
+														"objectType": {
+															"type": "reference",
+															"name": "EventTypes"
+														}
+													}
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "any"
+											}
+										}
+									]
+								}
+							}
+						}
+					],
+					"name": "Record"
+				},
+				"order": 9999,
+				"bPrivate": true
+			}
+		],
+		"methods": [
+			{
+				"name": "attach",
+				"description": "Attach callback at event",
+				"parameters": [
+					{
+						"name": "e",
+						"type": {
+							"type": "typeOperator",
+							"operator": "keyof",
+							"target": {
+								"type": "reference",
+								"name": "EventTypes"
+							}
+						},
+						"order": 9999
+					},
+					{
+						"name": "callback",
+						"type": {
+							"type": "reflection",
+							"declaration": {
+								"id": 111,
+								"name": "__type",
+								"kind": 65536,
+								"kindString": "Type literal",
+								"flags": {},
+								"signatures": [
+									{
+										"id": 112,
+										"name": "__type",
+										"kind": 4096,
+										"kindString": "Call signature",
+										"flags": {},
+										"parameters": [
+											{
+												"id": 113,
+												"name": "value",
+												"kind": 32768,
+												"kindString": "Parameter",
+												"flags": {},
+												"type": {
+													"type": "indexedAccess",
+													"indexType": {
+														"type": "typeOperator",
+														"operator": "keyof",
+														"target": {
+															"type": "reference",
+															"name": "EventTypes"
+														}
+													},
+													"objectType": {
+														"type": "reference",
+														"name": "EventTypes"
+													}
+												}
+											}
+										],
+										"type": {
+											"type": "intrinsic",
+											"name": "any"
+										}
+									}
+								]
+							}
+						},
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "detach",
+				"description": "Remove callbach listener at event",
+				"parameters": [
+					{
+						"name": "e",
+						"type": {
+							"type": "typeOperator",
+							"operator": "keyof",
+							"target": {
+								"type": "reference",
+								"name": "EventTypes"
+							}
+						},
+						"order": 9999
+					},
+					{
+						"name": "callback",
+						"type": {
+							"type": "reflection",
+							"declaration": {
+								"id": 118,
+								"name": "__type",
+								"kind": 65536,
+								"kindString": "Type literal",
+								"flags": {},
+								"signatures": [
+									{
+										"id": 119,
+										"name": "__type",
+										"kind": 4096,
+										"kindString": "Call signature",
+										"flags": {},
+										"parameters": [
+											{
+												"id": 120,
+												"name": "value",
+												"kind": 32768,
+												"kindString": "Parameter",
+												"flags": {
+													"isOptional": true
+												},
+												"type": {
+													"type": "indexedAccess",
+													"indexType": {
+														"type": "typeOperator",
+														"operator": "keyof",
+														"target": {
+															"type": "reference",
+															"name": "EventTypes"
+														}
+													},
+													"objectType": {
+														"type": "reference",
+														"name": "EventTypes"
+													}
+												}
+											}
+										],
+										"type": {
+											"type": "intrinsic",
+											"name": "void"
+										}
+									}
+								]
+							}
+						},
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "dispatch",
+				"description": "Dispatch event",
+				"parameters": [
+					{
+						"name": "e",
+						"type": {
+							"type": "typeOperator",
+							"operator": "keyof",
+							"target": {
+								"type": "reference",
+								"name": "EventTypes"
+							}
+						},
+						"order": 9999
+					},
+					{
+						"name": "params",
+						"type": {
+							"type": "indexedAccess",
+							"indexType": {
+								"type": "typeOperator",
+								"operator": "keyof",
+								"target": {
+									"type": "reference",
+									"name": "EventTypes"
+								}
+							},
+							"objectType": {
+								"type": "reference",
+								"name": "EventTypes"
+							}
+						},
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			}
+		],
+		"category": "Emitter"
+	},
+	{
+		"name": "Renderer",
+		"type": "Class",
+		"order": 9999,
+		"source": {
+			"fileName": "src/Renderer.ts",
+			"line": 32,
+			"character": 14
+		},
+		"extends": [
+			"Emitter"
+		],
+		"description": "The Renderer is a class for exporting the scene",
+		"constructor_ref": {
+			"parameters": [
+				{
+					"name": "drawer",
+					"type": {
+						"type": "reference",
+						"id": 3,
+						"name": "DrawerCanvas"
+					},
+					"order": 9999
+				},
+				{
+					"name": "ffmpegCorePath",
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"order": 9999,
+					"bOptional": true
+				}
+			]
+		},
+		"properties": [
+			{
+				"name": "drawer",
+				"type": {
+					"type": "reference",
+					"id": 3,
+					"name": "DrawerCanvas"
+				},
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "ffmpeg",
+				"type": {
+					"type": "union",
+					"types": [
+						{
+							"name": "undefined",
+							"type": "intrinsic",
+							"order": 9999
+						},
+						{
+							"name": "FFmpeg",
+							"type": "reference",
+							"order": 9999
+						}
+					]
+				},
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "ffmpegCorePath",
+				"type": {
+					"type": "union",
+					"types": [
+						{
+							"name": "undefined",
+							"type": "intrinsic",
+							"order": 9999
+						},
+						{
+							"name": "string",
+							"type": "intrinsic",
+							"order": 9999
+						}
+					]
+				},
+				"order": 9999,
+				"bPrivate": true
+			}
+		],
+		"methods": [
+			{
+				"name": "blobOrBuffer",
+				"description": "Canvas to BoB",
+				"parameters": [
+					{
+						"name": "mime",
+						"type": {
+							"type": "union",
+							"types": [
+								{
+									"type": "literal",
+									"value": "image/jpeg",
+									"order": 9999
+								},
+								{
+									"type": "literal",
+									"value": "image/png",
+									"order": 9999
+								}
+							]
+						},
+						"order": 9999
+					},
+					{
+						"name": "optionsOrQuality",
+						"type": {
+							"type": "reference",
+							"id": 128,
+							"name": "OoQ"
+						},
+						"defaultValue": "1",
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "reference",
+					"typeArguments": [
+						{
+							"type": "reference",
+							"id": 127,
+							"name": "BoB"
+						}
+					],
+					"name": "Promise"
+				},
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "frame",
+				"description": "Render frame `frameNumber` to Blob or Buffer",
+				"parameters": [
+					{
+						"name": "frameNumber",
+						"description": "frame to render",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					},
+					{
+						"name": "mime",
+						"description": "image type",
+						"type": {
+							"type": "union",
+							"types": [
+								{
+									"type": "literal",
+									"value": "image/jpeg",
+									"order": 9999
+								},
+								{
+									"type": "literal",
+									"value": "image/png",
+									"order": 9999
+								}
+							]
+						},
+						"defaultValue": "'image/png'",
+						"order": 9999
+					},
+					{
+						"name": "options",
+						"description": "quality or options",
+						"type": {
+							"type": "reference",
+							"id": 128,
+							"name": "OoQ"
+						},
+						"defaultValue": "1",
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "reference",
+					"typeArguments": [
+						{
+							"type": "reference",
+							"id": 127,
+							"name": "BoB"
+						}
+					],
+					"name": "Promise"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "frameAtTime",
+				"description": "Render frame at time to Blob or Buffer",
+				"parameters": [
+					{
+						"name": "time",
+						"description": "animation time",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					},
+					{
+						"name": "mime",
+						"description": "image type",
+						"type": {
+							"type": "union",
+							"types": [
+								{
+									"type": "literal",
+									"value": "image/jpeg",
+									"order": 9999
+								},
+								{
+									"type": "literal",
+									"value": "image/png",
+									"order": 9999
+								}
+							]
+						},
+						"defaultValue": "'image/png'",
+						"order": 9999
+					},
+					{
+						"name": "options",
+						"description": "quality or options",
+						"type": {
+							"type": "reference",
+							"id": 128,
+							"name": "OoQ"
+						},
+						"defaultValue": "1",
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "reference",
+					"typeArguments": [
+						{
+							"type": "reference",
+							"id": 127,
+							"name": "BoB"
+						}
+					],
+					"name": "Promise"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "frameAtTimeToDataUrl",
+				"description": "Render a frame at `time` to DataUrl",
+				"parameters": [
+					{
+						"name": "time",
+						"description": "of animation",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					},
+					{
+						"name": "mime",
+						"description": "image type",
+						"type": {
+							"type": "union",
+							"types": [
+								{
+									"type": "literal",
+									"value": "image/jpeg",
+									"order": 9999
+								},
+								{
+									"type": "literal",
+									"value": "image/png",
+									"order": 9999
+								}
+							]
+						},
+						"defaultValue": "'image/png'",
+						"order": 9999
+					},
+					{
+						"name": "options",
+						"description": "quality or options",
+						"type": {
+							"type": "reference",
+							"id": 128,
+							"name": "OoQ"
+						},
+						"defaultValue": "1",
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "union",
+					"types": [
+						{
+							"type": "literal",
+							"value": null
+						},
+						{
+							"type": "intrinsic",
+							"name": "string"
+						}
+					]
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "frameToDataUrl",
+				"description": "Render frame number to DataUrl",
+				"parameters": [
+					{
+						"name": "frameNumber",
+						"description": "frame to render",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					},
+					{
+						"name": "mime",
+						"description": "image type",
+						"type": {
+							"type": "union",
+							"types": [
+								{
+									"type": "literal",
+									"value": "image/jpeg",
+									"order": 9999
+								},
+								{
+									"type": "literal",
+									"value": "image/png",
+									"order": 9999
+								}
+							]
+						},
+						"defaultValue": "'image/png'",
+						"order": 9999
+					},
+					{
+						"name": "options",
+						"description": "quality or options",
+						"type": {
+							"type": "reference",
+							"id": 128,
+							"name": "OoQ"
+						},
+						"defaultValue": "1",
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "union",
+					"types": [
+						{
+							"type": "literal",
+							"value": null
+						},
+						{
+							"type": "intrinsic",
+							"name": "string"
+						}
+					]
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "render",
+				"description": "Render animation",
+				"parameters": [
+					{
+						"name": "type",
+						"description": "render type",
+						"type": {
+							"type": "reference",
+							"id": 594,
+							"name": "TRendererVideoType"
+						},
+						"defaultValue": "'video/mp4'",
+						"order": 9999
+					},
+					{
+						"name": "quality",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"defaultValue": "1",
+						"order": 9999
+					},
+					{
+						"name": "ffmpegLogger",
+						"type": {
+							"type": "reflection",
+							"declaration": {
+								"id": 147,
+								"name": "__type",
+								"kind": 65536,
+								"kindString": "Type literal",
+								"flags": {},
+								"signatures": [
+									{
+										"id": 148,
+										"name": "__type",
+										"kind": 4096,
+										"kindString": "Call signature",
+										"flags": {},
+										"parameters": [
+											{
+												"id": 149,
+												"name": "logParams",
+												"kind": 32768,
+												"kindString": "Parameter",
+												"flags": {},
+												"type": {
+													"type": "reflection",
+													"declaration": {
+														"id": 150,
+														"name": "__type",
+														"kind": 65536,
+														"kindString": "Type literal",
+														"flags": {},
+														"children": [
+															{
+																"id": 152,
+																"name": "message",
+																"kind": 1024,
+																"kindString": "Property",
+																"flags": {},
+																"sources": [
+																	{
+																		"fileName": "src/Renderer.ts",
+																		"line": 122,
+																		"character": 52
+																	}
+																],
+																"type": {
+																	"type": "intrinsic",
+																	"name": "string"
+																}
+															},
+															{
+																"id": 151,
+																"name": "type",
+																"kind": 1024,
+																"kindString": "Property",
+																"flags": {},
+																"sources": [
+																	{
+																		"fileName": "src/Renderer.ts",
+																		"line": 122,
+																		"character": 35
+																	}
+																],
+																"type": {
+																	"type": "intrinsic",
+																	"name": "string"
+																}
+															}
+														],
+														"groups": [
+															{
+																"title": "Properties",
+																"kind": 1024,
+																"children": [
+																	152,
+																	151
+																]
+															}
+														]
+													}
+												}
+											}
+										],
+										"type": {
+											"type": "intrinsic",
+											"name": "any"
+										}
+									}
+								]
+							}
+						},
+						"order": 9999,
+						"bOptional": true
+					},
+					{
+						"name": "ffmpegProgress",
+						"type": {
+							"type": "reflection",
+							"declaration": {
+								"id": 154,
+								"name": "__type",
+								"kind": 65536,
+								"kindString": "Type literal",
+								"flags": {},
+								"signatures": [
+									{
+										"id": 155,
+										"name": "__type",
+										"kind": 4096,
+										"kindString": "Call signature",
+										"flags": {},
+										"parameters": [
+											{
+												"id": 156,
+												"name": "progressParams",
+												"kind": 32768,
+												"kindString": "Parameter",
+												"flags": {},
+												"type": {
+													"type": "reflection",
+													"declaration": {
+														"id": 157,
+														"name": "__type",
+														"kind": 65536,
+														"kindString": "Type literal",
+														"flags": {},
+														"children": [
+															{
+																"id": 158,
+																"name": "ratio",
+																"kind": 1024,
+																"kindString": "Property",
+																"flags": {},
+																"sources": [
+																	{
+																		"fileName": "src/Renderer.ts",
+																		"line": 123,
+																		"character": 43
+																	}
+																],
+																"type": {
+																	"type": "intrinsic",
+																	"name": "number"
+																}
+															}
+														],
+														"groups": [
+															{
+																"title": "Properties",
+																"kind": 1024,
+																"children": [
+																	158
+																]
+															}
+														]
+													}
+												}
+											}
+										],
+										"type": {
+											"type": "intrinsic",
+											"name": "any"
+										}
+									}
+								]
+							}
+						},
+						"order": 9999,
+						"bOptional": true
+					}
+				],
+				"return_type": {
+					"type": "reference",
+					"typeArguments": [
+						{
+							"type": "reference",
+							"name": "Uint8Array"
+						}
+					],
+					"name": "Promise"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "toDataUrl",
+				"description": "Canvas to DataURL",
+				"parameters": [
+					{
+						"name": "mime",
+						"type": {
+							"type": "union",
+							"types": [
+								{
+									"type": "literal",
+									"value": "image/jpeg",
+									"order": 9999
+								},
+								{
+									"type": "literal",
+									"value": "image/png",
+									"order": 9999
+								}
+							]
+						},
+						"order": 9999
+					},
+					{
+						"name": "optionsOrQuality",
+						"type": {
+							"type": "reference",
+							"id": 128,
+							"name": "OoQ"
+						},
+						"defaultValue": "1",
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "union",
+					"types": [
+						{
+							"type": "literal",
+							"value": null
+						},
+						{
+							"type": "intrinsic",
+							"name": "string"
+						}
+					]
+				},
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "zip",
+				"description": "Render any frame and create array of zip",
+				"parameters": [
+					{
+						"name": "imagesType",
+						"type": {
+							"type": "union",
+							"types": [
+								{
+									"type": "literal",
+									"value": "image/jpeg",
+									"order": 9999
+								},
+								{
+									"type": "literal",
+									"value": "image/png",
+									"order": 9999
+								}
+							]
+						},
+						"defaultValue": "'image/png'",
+						"order": 9999
+					},
+					{
+						"name": "quality",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"defaultValue": "1",
+						"order": 9999
+					},
+					{
+						"name": "framesForChunk",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"defaultValue": "600",
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "reference",
+					"typeArguments": [
+						{
+							"type": "array",
+							"elementType": {
+								"type": "reference",
+								"name": "Uint8Array"
+							}
+						}
+					],
+					"name": "Promise"
+				},
+				"order": 9999,
+				"bPublic": true
+			}
+		],
+		"category": "Renderer"
+	},
+	{
+		"name": "BoB",
+		"type": "Type",
+		"order": 9999,
+		"source": {
+			"fileName": "src/Renderer.ts",
+			"line": 16,
+			"character": 15
+		},
+		"description": "Blob or Buffer",
+		"parameter": {
+			"name": "BoB",
+			"description": "Blob or Buffer",
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"name": "Blob",
+						"type": "reference",
+						"order": 9999
+					},
+					{
+						"name": "Buffer",
+						"type": "reference",
+						"order": 9999
+					}
+				]
+			},
+			"order": 9999
+		},
+		"category": "Renderer"
+	},
+	{
+		"name": "OoQ",
+		"type": "Type",
+		"order": 9999,
+		"source": {
+			"fileName": "src/Renderer.ts",
+			"line": 23,
+			"character": 15
+		},
+		"description": "Options or Quality",
+		"parameter": {
+			"name": "OoQ",
+			"description": "Options or Quality",
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"name": "PngConfig",
+						"type": "reference",
+						"order": 9999
+					},
+					{
+						"name": "JpegConfig",
+						"type": "reference",
+						"order": 9999
+					},
+					{
+						"name": "number",
+						"type": "intrinsic",
+						"order": 9999
+					}
+				]
+			},
+			"order": 9999
+		},
+		"category": "Renderer"
+	},
+	{
+		"name": "Timeline",
+		"type": "Class",
+		"order": 9999,
+		"source": {
+			"fileName": "src/Timeline.ts",
+			"line": 13,
+			"character": 14
+		},
+		"extends": [
+			"Emitter"
+		],
+		"description": "Is used for sequence time management.\nIt is necessary to set the duration and the number of frames per second (frame rate).",
+		"constructor_ref": {
+			"parameters": [
+				{
+					"name": "duration",
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"defaultValue": "60000",
+					"order": 9999
+				},
+				{
+					"name": "framerate",
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"defaultValue": "30",
+					"order": 9999
+				}
+			]
+		},
+		"properties": [
+			{
+				"name": "b_sequence_started",
+				"type": {
+					"type": "intrinsic",
+					"name": "boolean"
+				},
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "currentFrame",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "currentTime",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "fps",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "fps_samples",
+				"type": {
+					"type": "array",
+					"elementType": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				"defaultValue": "[]",
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "fps_samples_index",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"defaultValue": "0",
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "fps_samples_size",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"defaultValue": "30",
+				"order": 9999,
+				"bPrivate": true,
+				"bReadonly": true
+			},
+			{
+				"name": "last_tick",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "paused_time",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"defaultValue": "0",
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "sequence",
+				"type": {
+					"type": "reference",
+					"id": 590,
+					"name": "ISequenceMeta"
+				},
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "start_time",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "tick_time",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "PAUSE",
+				"description": "Animation status paused",
+				"type": {
+					"type": "literal",
+					"value": "pause"
+				},
+				"defaultValue": "'pause'",
+				"order": 9999,
+				"bPublic": true,
+				"bStatic": true,
+				"bReadonly": true
+			},
+			{
+				"name": "START",
+				"description": "Animation status started",
+				"type": {
+					"type": "literal",
+					"value": "start"
+				},
+				"defaultValue": "'start'",
+				"order": 9999,
+				"bPublic": true,
+				"bStatic": true,
+				"bReadonly": true
+			},
+			{
+				"name": "STOP",
+				"description": "Animation status stop",
+				"type": {
+					"type": "literal",
+					"value": "stop"
+				},
+				"defaultValue": "'stop'",
+				"order": 9999,
+				"bPublic": true,
+				"bStatic": true,
+				"bReadonly": true
+			}
+		],
+		"methods": [
+			{
+				"name": "bSequenceStarted",
+				"parameters": [],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "boolean"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "calculateFPS",
+				"description": "Calculate fps",
+				"parameters": [
+					{
+						"name": "currentFPS",
+						"description": "\n",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "getCurrentFrame",
+				"description": "Return current animation frame",
+				"parameters": [],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "getDuration",
+				"description": "Get timeline duration",
+				"parameters": [],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "getFrameAtTime",
+				"description": "Return frame number at time",
+				"parameters": [
+					{
+						"name": "time",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "getFrameTime",
+				"description": "get the time at specific frame number",
+				"parameters": [
+					{
+						"name": "frame",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "getFramerate",
+				"description": "Return framerate",
+				"parameters": [],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "getFramesCount",
+				"description": "Get number of frames based on duration and framerate",
+				"parameters": [],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "getSequence",
+				"description": "Return the sequence",
+				"parameters": [],
+				"return_type": {
+					"type": "reference",
+					"id": 590,
+					"name": "ISequenceMeta"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "getTickTime",
+				"description": "Return tick time (based on framerate)",
+				"parameters": [],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "getTime",
+				"description": "Return the current time",
+				"parameters": [],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "pause",
+				"description": "Pause the sequence",
+				"parameters": [],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "setDuration",
+				"description": "Set duration of timeline",
+				"parameters": [
+					{
+						"name": "duration",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "setFrame",
+				"description": "set current frame",
+				"parameters": [
+					{
+						"name": "frame",
+						"description": "\n",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "setFramerate",
+				"description": "Set a framerate",
+				"parameters": [
+					{
+						"name": "framerate",
+						"description": "\n",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "setSequence",
+				"description": "Set Sequence",
+				"parameters": [
+					{
+						"name": "duration",
+						"description": "in ms",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					},
+					{
+						"name": "framerate",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					},
+					{
+						"name": "atTime",
+						"description": "\n",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999,
+						"bOptional": true
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "setTime",
+				"description": "Set animation at time",
+				"parameters": [
+					{
+						"name": "time",
+						"description": "\n",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "start",
+				"description": "Start the sequence",
+				"parameters": [],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "stop",
+				"description": "Stop the sequence and reset",
+				"parameters": [],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "tick",
+				"description": "Animation tick",
+				"parameters": [
+					{
+						"name": "timestamp",
+						"description": "current timestamp",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "boolean"
+				},
+				"order": 9999,
+				"bPublic": true
+			}
+		],
+		"category": "Timeline"
+	},
+	{
+		"name": "BrowserDrawerCanvas",
+		"type": "Class",
+		"order": 9999,
+		"source": {
+			"fileName": "src/browser/BrowserDrawerCanvas.ts",
+			"line": 12,
+			"character": 25
+		},
+		"extends": [
+			"DrawerCanvas"
+		],
+		"constructor_ref": {
+			"parameters": [
+				{
+					"name": "scene",
+					"type": {
+						"type": "reference",
+						"name": "Scene"
+					},
+					"order": 9999,
+					"bOptional": true
+				},
+				{
+					"name": "canvasOrContainer",
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"name": "HTMLCanvasElement",
+								"type": "reference",
+								"order": 9999
+							},
+							{
+								"name": "HTMLElement",
+								"type": "reference",
+								"order": 9999
+							},
+							{
+								"name": "OffscreenCanvas",
+								"type": "reference",
+								"order": 9999
+							}
+						]
+					},
+					"order": 9999,
+					"bOptional": true
+				},
+				{
+					"name": "drawerOptions",
+					"type": {
+						"type": "intersection",
+						"types": [
+							{
+								"name": "IDrawerCanvasOptions",
+								"type": "reference",
+								"order": 9999
+							},
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 429,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"children": [
+										{
+											"id": 430,
+											"name": "dpi",
+											"kind": 1024,
+											"kindString": "Property",
+											"flags": {
+												"isOptional": true
+											},
+											"sources": [
+												{
+													"fileName": "src/browser/BrowserDrawerCanvas.ts",
+													"line": 22,
+													"character": 46
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"kind": 1024,
+											"children": [
+												430
+											]
+										}
+									]
+								},
+								"order": 9999
+							}
+						]
+					},
+					"order": 9999,
+					"bOptional": true
+				},
+				{
+					"name": "duration",
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"defaultValue": "60000",
+					"order": 9999
+				},
+				{
+					"name": "framerate",
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"defaultValue": "60",
+					"order": 9999
+				}
+			]
+		},
+		"properties": [
+			{
+				"name": "animation_id",
+				"type": {
+					"type": "union",
+					"types": [
+						{
+							"type": "literal",
+							"value": null,
+							"order": 9999
+						},
+						{
+							"name": "number",
+							"type": "intrinsic",
+							"order": 9999
+						}
+					]
+				},
+				"order": 9999,
+				"bProtected": true
+			},
+			{
+				"name": "dpi",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"defaultValue": "1",
+				"order": 9999,
+				"bProtected": true
+			},
+			{
+				"name": "draw_id",
+				"type": {
+					"type": "union",
+					"types": [
+						{
+							"type": "literal",
+							"value": null,
+							"order": 9999
+						},
+						{
+							"name": "number",
+							"type": "intrinsic",
+							"order": 9999
+						}
+					]
+				},
+				"order": 9999,
+				"bProtected": true
+			},
+			{
+				"name": "redraw_id",
+				"type": {
+					"type": "union",
+					"types": [
+						{
+							"type": "literal",
+							"value": null,
+							"order": 9999
+						},
+						{
+							"name": "number",
+							"type": "intrinsic",
+							"order": 9999
+						}
+					]
+				},
+				"order": 9999,
+				"bProtected": true
+			}
+		],
+		"methods": [
+			{
+				"name": "animate",
+				"description": "Internal tick animation",
+				"parameters": [
+					{
+						"name": "timestamp",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPrivate": true
+			},
+			{
+				"name": "pauseAnimation",
+				"description": "Pause animation drawing",
+				"parameters": [],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "playAnimation",
+				"description": "Play animation drawing",
+				"parameters": [],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "redraw",
+				"parameters": [],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "resize",
+				"parameters": [
+					{
+						"name": "width",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					},
+					{
+						"name": "height",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"order": 9999
+					},
+					{
+						"name": "sceneFit",
+						"type": {
+							"type": "union",
+							"types": [
+								{
+									"type": "literal",
+									"value": "cover",
+									"order": 9999
+								},
+								{
+									"type": "literal",
+									"value": "contain",
+									"order": 9999
+								},
+								{
+									"type": "literal",
+									"value": "none",
+									"order": 9999
+								}
+							]
+						},
+						"order": 9999,
+						"bOptional": true
+					},
+					{
+						"name": "dpi",
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						},
+						"defaultValue": "...",
+						"order": 9999
+					}
+				],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "startAnimation",
+				"description": "Start animation drawing",
+				"parameters": [],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			},
+			{
+				"name": "stopAnimation",
+				"description": "Stop animation drawing",
+				"parameters": [],
+				"return_type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999,
+				"bPublic": true
+			}
+		],
+		"category": "DrawerCanvas"
+	},
+	{
+		"type": "Interface",
+		"name": "IDrawerCanvasEvents",
+		"order": 9999,
+		"source": {
+			"fileName": "src/types.ts",
+			"line": 79,
+			"character": 36
+		},
+		"properties": [
+			{
+				"name": "drawer-canvas:before_draw",
+				"description": "Called before scene is drawn",
+				"type": {
+					"type": "reflection",
+					"declaration": {
+						"id": 573,
+						"name": "__type",
+						"kind": 65536,
+						"kindString": "Type literal",
+						"flags": {},
+						"children": [
+							{
+								"id": 574,
+								"name": "currentFrame",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 84,
+										"character": 14
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 575,
+								"name": "currentTime",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 85,
+										"character": 13
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							}
+						],
+						"groups": [
+							{
+								"title": "Properties",
+								"kind": 1024,
+								"children": [
+									574,
+									575
+								]
+							}
+						]
+					}
+				},
+				"order": 9999
+			},
+			{
+				"name": "drawer-canvas:resize",
+				"description": "Called after call .resize() method",
+				"type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999
+			}
+		],
+		"category": "DrawerCanvas"
+	},
+	{
+		"type": "Interface",
+		"name": "IDrawerCanvasOptions",
+		"order": 9999,
+		"source": {
+			"fileName": "src/types.ts",
+			"line": 57,
+			"character": 37
+		},
+		"properties": [
+			{
+				"name": "backgroundImage",
+				"type": {
+					"type": "reference",
+					"name": "CanvasImageSource"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "backgroundImageFit",
+				"type": {
+					"type": "union",
+					"types": [
+						{
+							"type": "literal",
+							"value": "cover",
+							"order": 9999
+						},
+						{
+							"type": "literal",
+							"value": "contain",
+							"order": 9999
+						},
+						{
+							"type": "literal",
+							"value": "none",
+							"order": 9999
+						}
+					]
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "clear",
+				"type": {
+					"type": "intrinsic",
+					"name": "boolean"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "ghostAlpha",
+				"type": {
+					"type": "intrinsic",
+					"name": "boolean"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "ghostSkipFunction",
+				"type": {
+					"type": "reflection",
+					"declaration": {
+						"id": 560,
+						"name": "__type",
+						"kind": 65536,
+						"kindString": "Type literal",
+						"flags": {},
+						"signatures": [
+							{
+								"id": 561,
+								"name": "__type",
+								"kind": 4096,
+								"kindString": "Call signature",
+								"flags": {},
+								"parameters": [
+									{
+										"id": 562,
+										"name": "ghostRepetition",
+										"kind": 32768,
+										"kindString": "Parameter",
+										"flags": {},
+										"type": {
+											"type": "reference",
+											"name": "IBaseRepetition"
+										}
+									},
+									{
+										"id": 563,
+										"name": "currentTime",
+										"kind": 32768,
+										"kindString": "Parameter",
+										"flags": {},
+										"type": {
+											"type": "intrinsic",
+											"name": "number"
+										}
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							}
+						]
+					}
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "ghostSkipTime",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "ghosts",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "height",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "noBackground",
+				"type": {
+					"type": "intrinsic",
+					"name": "boolean"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "sceneFit",
+				"type": {
+					"type": "union",
+					"types": [
+						{
+							"type": "literal",
+							"value": "cover",
+							"order": 9999
+						},
+						{
+							"type": "literal",
+							"value": "contain",
+							"order": 9999
+						},
+						{
+							"type": "literal",
+							"value": "none",
+							"order": 9999
+						}
+					]
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "simmetricLines",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "time",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "width",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999,
+				"bOptional": true
+			}
+		],
+		"category": "DrawerCanvas"
+	},
+	{
+		"type": "Interface",
+		"name": "IDrawerCanvasPropArguments",
+		"order": 9999,
+		"source": {
+			"fileName": "src/types.ts",
+			"line": 15,
+			"character": 43
+		},
+		"extends": [
+			"IDrawerPropArguments"
+		],
+		"properties": [
+			{
+				"name": "repetition",
+				"description": "Information about repetition",
+				"type": {
+					"type": "reference",
+					"name": "IRepetition"
+				},
+				"order": 1
+			},
+			{
+				"name": "shape",
+				"description": "Current Shape",
+				"type": {
+					"type": "reference",
+					"typeArguments": [
+						{
+							"type": "intrinsic",
+							"name": "any"
+						},
+						{
+							"type": "intrinsic",
+							"name": "any"
+						}
+					],
+					"name": "ShapeBase"
+				},
+				"order": 5
+			},
+			{
+				"name": "parent",
+				"description": "Parent repetition (if encapsulated)",
+				"type": {
+					"type": "reference",
+					"name": "IParentPropArguments"
+				},
+				"order": 7,
+				"bOptional": true
+			},
+			{
+				"name": "canvasContext",
+				"description": "Canvas rendering context",
+				"type": {
+					"type": "union",
+					"types": [
+						{
+							"name": "CanvasRenderingContext2D",
+							"type": "reference",
+							"order": 9999
+						},
+						{
+							"name": "OffscreenCanvasRenderingContext2D",
+							"type": "reference",
+							"order": 9999
+						}
+					]
+				},
+				"order": 9999
+			}
+		],
+		"category": "DrawerCanvas"
+	},
+	{
+		"type": "Interface",
+		"name": "IDrawerCanvasStreamProps",
+		"order": 9999,
+		"source": {
+			"fileName": "src/types.ts",
+			"line": 36,
+			"character": 41
+		},
+		"properties": [
+			{
+				"name": "composite",
+				"type": {
+					"type": "reference",
+					"id": 527,
+					"typeArguments": [
+						{
+							"type": "reference",
+							"name": "TCanvasContexComposite"
+						}
+					],
+					"name": "TDrawerCanvasProp"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "fill",
+				"type": {
+					"type": "reference",
+					"id": 527,
+					"typeArguments": [
+						{
+							"type": "union",
+							"types": [
+								{
+									"type": "intrinsic",
+									"name": "string"
+								},
+								{
+									"type": "reference",
+									"name": "CanvasGradient"
+								},
+								{
+									"type": "reference",
+									"name": "CanvasPattern"
+								}
+							]
+						}
+					],
+					"name": "TDrawerCanvasProp"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "filter",
+				"type": {
+					"type": "reference",
+					"id": 527,
+					"typeArguments": [
+						{
+							"type": "intrinsic",
+							"name": "string"
+						}
+					],
+					"name": "TDrawerCanvasProp"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "lineCap",
+				"type": {
+					"type": "reference",
+					"id": 527,
+					"typeArguments": [
+						{
+							"type": "union",
+							"types": [
+								{
+									"type": "literal",
+									"value": "round"
+								},
+								{
+									"type": "literal",
+									"value": "butt"
+								},
+								{
+									"type": "literal",
+									"value": "square"
+								}
+							]
+						}
+					],
+					"name": "TDrawerCanvasProp"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "lineDash",
+				"type": {
+					"type": "reference",
+					"id": 527,
+					"typeArguments": [
+						{
+							"type": "tuple",
+							"elements": [
+								{
+									"type": "intrinsic",
+									"name": "number"
+								},
+								{
+									"type": "intrinsic",
+									"name": "number"
+								}
+							]
+						}
+					],
+					"name": "TDrawerCanvasProp"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "lineDashOffset",
+				"type": {
+					"type": "reference",
+					"id": 527,
+					"typeArguments": [
+						{
+							"type": "intrinsic",
+							"name": "number"
+						}
+					],
+					"name": "TDrawerCanvasProp"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "lineJoin",
+				"type": {
+					"type": "reference",
+					"id": 527,
+					"typeArguments": [
+						{
+							"type": "union",
+							"types": [
+								{
+									"type": "literal",
+									"value": "bevel"
+								},
+								{
+									"type": "literal",
+									"value": "round"
+								},
+								{
+									"type": "literal",
+									"value": "miter"
+								}
+							]
+						}
+					],
+					"name": "TDrawerCanvasProp"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "lineWidth",
+				"type": {
+					"type": "reference",
+					"id": 527,
+					"typeArguments": [
+						{
+							"type": "intrinsic",
+							"name": "number"
+						}
+					],
+					"name": "TDrawerCanvasProp"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "miterLimit",
+				"type": {
+					"type": "reference",
+					"id": 527,
+					"typeArguments": [
+						{
+							"type": "intrinsic",
+							"name": "number"
+						}
+					],
+					"name": "TDrawerCanvasProp"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "opacity",
+				"type": {
+					"type": "reference",
+					"id": 527,
+					"typeArguments": [
+						{
+							"type": "intrinsic",
+							"name": "number"
+						}
+					],
+					"name": "TDrawerCanvasProp"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "shadowBlur",
+				"type": {
+					"type": "reference",
+					"id": 527,
+					"typeArguments": [
+						{
+							"type": "intrinsic",
+							"name": "number"
+						}
+					],
+					"name": "TDrawerCanvasProp"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "shadowColor",
+				"type": {
+					"type": "reference",
+					"id": 527,
+					"typeArguments": [
+						{
+							"type": "intrinsic",
+							"name": "string"
+						}
+					],
+					"name": "TDrawerCanvasProp"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "shadowOffsetX",
+				"type": {
+					"type": "reference",
+					"id": 527,
+					"typeArguments": [
+						{
+							"type": "intrinsic",
+							"name": "string"
+						}
+					],
+					"name": "TDrawerCanvasProp"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "shadowOffsetY",
+				"type": {
+					"type": "reference",
+					"id": 527,
+					"typeArguments": [
+						{
+							"type": "intrinsic",
+							"name": "string"
+						}
+					],
+					"name": "TDrawerCanvasProp"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "stroke",
+				"type": {
+					"type": "reference",
+					"id": 527,
+					"typeArguments": [
+						{
+							"type": "union",
+							"types": [
+								{
+									"type": "intrinsic",
+									"name": "string"
+								},
+								{
+									"type": "reference",
+									"name": "CanvasGradient"
+								},
+								{
+									"type": "reference",
+									"name": "CanvasPattern"
+								}
+							]
+						}
+					],
+					"name": "TDrawerCanvasProp"
+				},
+				"order": 9999,
+				"bOptional": true
+			}
+		],
+		"category": "DrawerCanvas"
+	},
+	{
+		"type": "Interface",
+		"name": "IDrawerPropArguments",
+		"order": 9999,
+		"source": {
+			"fileName": "src/types.ts",
+			"line": 6,
+			"character": 37
+		},
+		"extends": [
+			"IPropArguments"
+		],
+		"properties": [
+			{
+				"name": "repetition",
+				"description": "Information about repetition",
+				"type": {
+					"type": "reference",
+					"name": "IRepetition"
+				},
+				"order": 1
+			},
+			{
+				"name": "shape",
+				"description": "Current Shape",
+				"type": {
+					"type": "reference",
+					"typeArguments": [
+						{
+							"type": "intrinsic",
+							"name": "any"
+						},
+						{
+							"type": "intrinsic",
+							"name": "any"
+						}
+					],
+					"name": "ShapeBase"
+				},
+				"order": 5
+			},
+			{
+				"name": "parent",
+				"description": "Parent repetition (if encapsulated)",
+				"type": {
+					"type": "reference",
+					"name": "IParentPropArguments"
+				},
+				"order": 7,
+				"bOptional": true
+			}
+		],
+		"category": "DrawerCanvas"
+	},
+	{
+		"type": "Interface",
+		"name": "IRendererEvents",
+		"order": 9999,
+		"source": {
+			"fileName": "src/types.ts",
+			"line": 173,
+			"character": 32
+		},
+		"properties": [
+			{
+				"name": "renderer:video_init",
+				"description": "Called when start video rendering before loading FFmpeg.wasm",
+				"type": {
+					"type": "reflection",
+					"declaration": {
+						"id": 613,
+						"name": "__type",
+						"kind": 65536,
+						"kindString": "Type literal",
+						"flags": {},
+						"children": [
+							{
+								"id": 615,
+								"name": "duration",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 201,
+										"character": 55
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 616,
+								"name": "framerate",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 201,
+										"character": 74
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 614,
+								"name": "totalFrames",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 201,
+										"character": 37
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 617,
+								"name": "type",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 201,
+										"character": 88
+									}
+								],
+								"type": {
+									"type": "reference",
+									"id": 594,
+									"name": "TRendererVideoType"
+								}
+							}
+						],
+						"groups": [
+							{
+								"title": "Properties",
+								"kind": 1024,
+								"children": [
+									615,
+									616,
+									614,
+									617
+								]
+							}
+						]
+					}
+				},
+				"order": 9999
+			},
+			{
+				"name": "renderer:video_preparing",
+				"description": "Called when each frame is rendered and video generation start",
+				"type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999
+			},
+			{
+				"name": "renderer:video_progress",
+				"description": "Called each frame render",
+				"type": {
+					"type": "reflection",
+					"declaration": {
+						"id": 625,
+						"name": "__type",
+						"kind": 65536,
+						"kindString": "Type literal",
+						"flags": {},
+						"children": [
+							{
+								"id": 627,
+								"name": "duration",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 213,
+										"character": 10
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 631,
+								"name": "elapsedTime",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 217,
+										"character": 13
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 626,
+								"name": "frame",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 212,
+										"character": 7
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 630,
+								"name": "remainingTime",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 216,
+										"character": 15
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 629,
+								"name": "renderTime",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 215,
+										"character": 12
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 628,
+								"name": "totalFrames",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 214,
+										"character": 13
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							}
+						],
+						"groups": [
+							{
+								"title": "Properties",
+								"kind": 1024,
+								"children": [
+									627,
+									631,
+									626,
+									630,
+									629,
+									628
+								]
+							}
+						]
+					}
+				},
+				"order": 9999
+			},
+			{
+				"name": "renderer:video_start",
+				"description": "Called when FFmpeg.wasm is loaded",
+				"type": {
+					"type": "reflection",
+					"declaration": {
+						"id": 619,
+						"name": "__type",
+						"kind": 65536,
+						"kindString": "Type literal",
+						"flags": {},
+						"children": [
+							{
+								"id": 621,
+								"name": "duration",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 206,
+										"character": 56
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 622,
+								"name": "framerate",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 206,
+										"character": 75
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 620,
+								"name": "totalFrames",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 206,
+										"character": 38
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 623,
+								"name": "type",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 206,
+										"character": 89
+									}
+								],
+								"type": {
+									"type": "reference",
+									"id": 594,
+									"name": "TRendererVideoType"
+								}
+							}
+						],
+						"groups": [
+							{
+								"title": "Properties",
+								"kind": 1024,
+								"children": [
+									621,
+									622,
+									620,
+									623
+								]
+							}
+						]
+					}
+				},
+				"order": 9999
+			},
+			{
+				"name": "renderer:zip_preparing",
+				"description": "Called when each frame is rendered and ZIP generation start",
+				"type": {
+					"type": "intrinsic",
+					"name": "void"
+				},
+				"order": 9999
+			},
+			{
+				"name": "renderer:zip_progress",
+				"description": "Called each frame render",
+				"type": {
+					"type": "reflection",
+					"declaration": {
+						"id": 602,
+						"name": "__type",
+						"kind": 65536,
+						"kindString": "Type literal",
+						"flags": {},
+						"children": [
+							{
+								"id": 603,
+								"name": "chunk",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 183,
+										"character": 7
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 610,
+								"name": "elapsedTime",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 190,
+										"character": 13
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 604,
+								"name": "frame",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 184,
+										"character": 7
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 607,
+								"name": "framesForChunk",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 187,
+										"character": 16
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 609,
+								"name": "remainingTime",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 189,
+										"character": 15
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 608,
+								"name": "renderTime",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 188,
+										"character": 12
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 606,
+								"name": "totalChunks",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 186,
+										"character": 13
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 605,
+								"name": "totalFrames",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 185,
+										"character": 13
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							}
+						],
+						"groups": [
+							{
+								"title": "Properties",
+								"kind": 1024,
+								"children": [
+									603,
+									610,
+									604,
+									607,
+									609,
+									608,
+									606,
+									605
+								]
+							}
+						]
+					}
+				},
+				"order": 9999
+			},
+			{
+				"name": "renderer:zip_start",
+				"description": "Called when start ZIP rendering",
+				"type": {
+					"type": "reflection",
+					"declaration": {
+						"id": 597,
+						"name": "__type",
+						"kind": 65536,
+						"kindString": "Type literal",
+						"flags": {},
+						"children": [
+							{
+								"id": 598,
+								"name": "chunks",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 177,
+										"character": 31
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 599,
+								"name": "framesForChunk",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 177,
+										"character": 55
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 600,
+								"name": "totalFrames",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 177,
+										"character": 76
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							}
+						],
+						"groups": [
+							{
+								"title": "Properties",
+								"kind": 1024,
+								"children": [
+									598,
+									599,
+									600
+								]
+							}
+						]
+					}
+				},
+				"order": 9999
+			}
+		],
+		"category": "Renderer"
+	},
+	{
+		"type": "Interface",
+		"name": "ISceneChildDrawerData",
+		"order": 9999,
+		"source": {
+			"fileName": "src/types.ts",
+			"line": 124,
+			"character": 38
+		},
+		"properties": [
+			{
+				"name": "composite",
+				"type": {
+					"type": "reference",
+					"name": "TCanvasContexComposite"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "disableGhost",
+				"type": {
+					"type": "intrinsic",
+					"name": "boolean"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "highlighted",
+				"type": {
+					"type": "intrinsic",
+					"name": "boolean"
+				},
+				"order": 9999,
+				"bOptional": true
+			},
+			{
+				"name": "visible",
+				"type": {
+					"type": "intrinsic",
+					"name": "boolean"
+				},
+				"order": 9999,
+				"bOptional": true
+			}
+		],
+		"category": "DrawerCanvas"
+	},
+	{
+		"type": "Interface",
+		"name": "ISequenceMeta",
+		"order": 9999,
+		"source": {
+			"fileName": "src/types.ts",
+			"line": 156,
+			"character": 30
+		},
+		"properties": [
+			{
+				"name": "duration",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999
+			},
+			{
+				"name": "framerate",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999
+			},
+			{
+				"name": "frames",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999
+			}
+		],
+		"category": "Timeline"
+	},
+	{
+		"type": "Interface",
+		"name": "ITimelineEvents",
+		"order": 9999,
+		"source": {
+			"fileName": "src/types.ts",
+			"line": 134,
+			"character": 32
+		},
+		"properties": [
+			{
+				"name": "timeline:change_status",
+				"description": "Called when sequence is update",
+				"type": {
+					"type": "union",
+					"types": [
+						{
+							"type": "literal",
+							"value": "start",
+							"order": 9999
+						},
+						{
+							"type": "literal",
+							"value": "pause",
+							"order": 9999
+						},
+						{
+							"type": "literal",
+							"value": "stop",
+							"order": 9999
+						}
+					]
+				},
+				"order": 9999
+			},
+			{
+				"name": "timeline:progress",
+				"description": "Called each animation tick",
+				"type": {
+					"type": "reflection",
+					"declaration": {
+						"id": 586,
+						"name": "__type",
+						"kind": 65536,
+						"kindString": "Type literal",
+						"flags": {},
+						"children": [
+							{
+								"id": 587,
+								"name": "currentFrame",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 147,
+										"character": 14
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 588,
+								"name": "currentTime",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 148,
+										"character": 13
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							},
+							{
+								"id": 589,
+								"name": "fps",
+								"kind": 1024,
+								"kindString": "Property",
+								"flags": {},
+								"sources": [
+									{
+										"fileName": "src/types.ts",
+										"line": 149,
+										"character": 5
+									}
+								],
+								"type": {
+									"type": "intrinsic",
+									"name": "number"
+								}
+							}
+						],
+						"groups": [
+							{
+								"title": "Properties",
+								"kind": 1024,
+								"children": [
+									587,
+									588,
+									589
+								]
+							}
+						]
+					}
+				},
+				"order": 9999
+			},
+			{
+				"name": "timeline:update_sequence",
+				"description": "Called when sequence is update",
+				"type": {
+					"type": "reference",
+					"id": 590,
+					"name": "ISequenceMeta"
+				},
+				"order": 9999
+			}
+		],
+		"category": "Timeline"
+	},
+	{
+		"name": "TDrawerCanvasProp",
+		"type": "Type",
+		"order": 9999,
+		"source": {
+			"fileName": "src/types.ts",
+			"line": 27,
+			"character": 29
+		},
+		"parameter": {
+			"name": "TDrawerCanvasProp",
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"name": "T",
+						"type": "reference",
+						"order": 9999
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"name": "__type",
+							"parameters": [
+								{
+									"name": "propArguments",
+									"type": {
+										"type": "reference",
+										"id": 522,
+										"name": "IDrawerCanvasPropArguments"
+									},
+									"order": 9999
+								}
+							],
+							"return_type": {
+								"type": "reference",
+								"name": "T"
+							},
+							"order": 9999
+						},
+						"order": 9999
+					}
+				]
+			},
+			"order": 9999
+		},
+		"typeParameters": [
+			{
+				"id": 531,
+				"name": "T",
+				"kind": 131072,
+				"kindString": "Type parameter",
+				"flags": {}
+			}
+		],
+		"category": "DrawerCanvas"
+	},
+	{
+		"name": "TDrawerProp",
+		"type": "Type",
+		"order": 9999,
+		"source": {
+			"fileName": "src/types.ts",
+			"line": 31,
+			"character": 23
+		},
+		"parameter": {
+			"name": "TDrawerProp",
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"name": "T",
+						"type": "reference",
+						"order": 9999
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"name": "__type",
+							"parameters": [
+								{
+									"name": "propArguments",
+									"type": {
+										"type": "reference",
+										"id": 518,
+										"name": "IDrawerPropArguments"
+									},
+									"order": 9999
+								}
+							],
+							"return_type": {
+								"type": "reference",
+								"name": "T"
+							},
+							"order": 9999
+						},
+						"order": 9999
+					}
+				]
+			},
+			"order": 9999
+		},
+		"typeParameters": [
+			{
+				"id": 536,
+				"name": "T",
+				"kind": 131072,
+				"kindString": "Type parameter",
+				"flags": {}
+			}
+		],
+		"category": "DrawerCanvas"
+	},
+	{
+		"name": "TRendererVideoType",
+		"type": "Type",
+		"order": 9999,
+		"source": {
+			"fileName": "src/types.ts",
+			"line": 165,
+			"character": 30
+		},
+		"parameter": {
+			"name": "TRendererVideoType",
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"type": "literal",
+						"value": "video/webm",
+						"order": 9999
+					},
+					{
+						"type": "literal",
+						"value": "video/mp4",
+						"order": 9999
+					},
+					{
+						"type": "literal",
+						"value": "gif",
+						"order": 9999
+					}
+				]
+			},
+			"order": 9999
+		},
+		"category": "Renderer"
+	},
+	{
+		"name": "fit",
+		"description": "Utiltites",
+		"parameters": [
+			{
+				"name": "sourceWidth",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999
+			},
+			{
+				"name": "sourceHeight",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999
+			},
+			{
+				"name": "destWidth",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999
+			},
+			{
+				"name": "destHeight",
+				"type": {
+					"type": "intrinsic",
+					"name": "number"
+				},
+				"order": 9999
+			},
+			{
+				"name": "fit",
+				"type": {
+					"type": "union",
+					"types": [
+						{
+							"type": "literal",
+							"value": "cover",
+							"order": 9999
+						},
+						{
+							"type": "literal",
+							"value": "contain",
+							"order": 9999
+						},
+						{
+							"type": "literal",
+							"value": "none",
+							"order": 9999
+						}
+					]
+				},
+				"defaultValue": "'none'",
+				"order": 9999
+			}
+		],
+		"return_type": {
+			"type": "reflection",
+			"declaration": {
+				"id": 641,
+				"name": "__type",
+				"kind": 65536,
+				"kindString": "Type literal",
+				"flags": {},
+				"children": [
+					{
+						"id": 645,
+						"name": "height",
+						"kind": 1024,
+						"kindString": "Property",
+						"flags": {},
+						"sources": [
+							{
+								"fileName": "src/utils.ts",
+								"line": 29,
+								"character": 48
+							}
+						],
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						}
+					},
+					{
+						"id": 646,
+						"name": "scale",
+						"kind": 1024,
+						"kindString": "Property",
+						"flags": {},
+						"sources": [
+							{
+								"fileName": "src/utils.ts",
+								"line": 29,
+								"character": 63
+							}
+						],
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						}
+					},
+					{
+						"id": 644,
+						"name": "width",
+						"kind": 1024,
+						"kindString": "Property",
+						"flags": {},
+						"sources": [
+							{
+								"fileName": "src/utils.ts",
+								"line": 29,
+								"character": 32
+							}
+						],
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						}
+					},
+					{
+						"id": 642,
+						"name": "x",
+						"kind": 1024,
+						"kindString": "Property",
+						"flags": {},
+						"sources": [
+							{
+								"fileName": "src/utils.ts",
+								"line": 29,
+								"character": 6
+							}
+						],
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						}
+					},
+					{
+						"id": 643,
+						"name": "y",
+						"kind": 1024,
+						"kindString": "Property",
+						"flags": {},
+						"sources": [
+							{
+								"fileName": "src/utils.ts",
+								"line": 29,
+								"character": 17
+							}
+						],
+						"type": {
+							"type": "intrinsic",
+							"name": "number"
+						}
+					}
+				],
+				"groups": [
+					{
+						"title": "Properties",
+						"kind": 1024,
+						"children": [
+							645,
+							646,
+							644,
+							642,
+							643
+						]
+					}
+				],
+				"sources": [
+					{
+						"fileName": "src/utils.ts",
+						"line": 29,
+						"character": 2
+					}
+				]
+			}
+		},
+		"order": 9999,
+		"type": "Function",
+		"source": {
+			"fileName": "src/utils.ts",
+			"line": 23,
+			"character": 19
+		},
+		"category": "Utilities"
+	}
+]
