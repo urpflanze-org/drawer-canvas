@@ -8,8 +8,8 @@
 		"urpflanze",
 		"canvas"
 	],
-	"module": "build/esm/urpflanze-drawer-canvas.min.js",
-	"browser": "build/umd/urpflanze-drawer-canvas.min.js",
+	"module": "build/esm/urpflanze-drawer-canvas.js",
+	"browser": "build/umd/urpflanze-drawer-canvas.js",
 	"main": "dist/cjs/index.js",
 	"types": "dist/cjs/index.d.ts",
 	"files": [
@@ -68,7 +68,7 @@
 	"devDependencies": {
 		"@types/tap": "^15.0.4",
 		"@typescript-eslint/eslint-plugin": "^4.28.4",
-		"@urpflanze/typedoc-docs": "^0.1.14",
+		"@urpflanze/typedoc-docs": "^0.1.15",
 		"eslint": "^7.21.0",
 		"eslint-config-prettier": "^8.1.0",
 		"standard-version": "^9.3.1",
