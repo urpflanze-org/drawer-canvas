@@ -5,7 +5,7 @@
 		"order": 9999,
 		"source": {
 			"fileName": "src/DrawerCanvas.ts",
-			"line": 27,
+			"line": 30,
 			"character": 18
 		},
 		"extends": [
@@ -219,7 +219,7 @@
 										"sources": [
 											{
 												"fileName": "src/DrawerCanvas.ts",
-												"line": 30,
+												"line": 33,
 												"character": 17
 											}
 										],
@@ -239,7 +239,7 @@
 										"sources": [
 											{
 												"fileName": "src/DrawerCanvas.ts",
-												"line": 31,
+												"line": 34,
 												"character": 19
 											}
 										],
@@ -482,7 +482,7 @@
 												"sources": [
 													{
 														"fileName": "src/DrawerCanvas.ts",
-														"line": 230,
+														"line": 233,
 														"character": 61
 													}
 												],
@@ -855,7 +855,7 @@
 		"order": 9999,
 		"source": {
 			"fileName": "src/DrawerCanvas.ts",
-			"line": 20,
+			"line": 23,
 			"character": 19
 		},
 		"parameter": {
@@ -1940,7 +1940,7 @@
 		"order": 9999,
 		"source": {
 			"fileName": "src/Timeline.ts",
-			"line": 13,
+			"line": 14,
 			"character": 14
 		},
 		"extends": [
