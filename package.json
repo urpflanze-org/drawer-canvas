@@ -1,6 +1,6 @@
 {
 	"name": "@urpflanze/drawer-canvas",
-	"version": "0.1.2",
+	"version": "0.2.0",
 	"description": "Draw Urpflanze scene in browser or Node with canvas",
 	"license": "GPL-3.0-or-later",
 	"docs": "https://docs.urpflanze.org/drawer-canvas/",
