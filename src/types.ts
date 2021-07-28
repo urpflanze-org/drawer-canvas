@@ -1,4 +1,4 @@
-import { IBaseRepetition, IPropArguments } from '@urpflanze/core'
+import type { IBaseRepetition, IPropArguments } from '@urpflanze/core'
 
 /**
  * @category DrawerCanvas

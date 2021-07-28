@@ -1,4 +1,5 @@
-import { mod, now } from '@urpflanze/core'
+import { now } from '@urpflanze/core/dist/cjs/Utilities'
+import { mod } from '@urpflanze/core/dist/cjs/math'
 import { Emitter } from './Emitter'
 import { ISequenceMeta, ITimelineEvents } from './types'
 

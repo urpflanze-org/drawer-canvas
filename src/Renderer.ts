@@ -1,5 +1,5 @@
 import { createFFmpeg, FFmpeg } from '@ffmpeg/ffmpeg'
-import { clamp, now } from '@urpflanze/core'
+import { clamp, now } from '@urpflanze/core/dist/cjs/Utilities'
 import { Canvas, JpegConfig, PngConfig } from 'canvas'
 import * as JSZip from 'jszip'
 import BrowserDrawerCanvas from './browser'

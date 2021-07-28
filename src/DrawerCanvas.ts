@@ -1,5 +1,8 @@
 import { parseColor } from '@urpflanze/color'
-import { IBaseRepetition, mod, now, Scene, ShapePrimitive, TDrawerProp, Vec2 } from '@urpflanze/core'
+import type { IBaseRepetition, Scene, ShapePrimitive, TDrawerProp } from '@urpflanze/core'
+import { now } from '@urpflanze/core/dist/cjs/Utilities'
+import { mod } from '@urpflanze/core/dist/cjs/math'
+import Vec2 from '@urpflanze/core/dist/cjs/math/Vec2'
 import { Canvas, createCanvas } from 'canvas'
 
 import { Emitter } from './Emitter'
