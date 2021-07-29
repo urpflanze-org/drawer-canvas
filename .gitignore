@@ -1,5 +1,6 @@
 # Remove environment files
 node_modules
+build
 dist
 testing 
 .vscode
