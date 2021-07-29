@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/urpflanze-org/drawer-canvas/compare/v0.2.0...v0.2.1) (2021-07-29)
+
+
+### Bug Fixes
+
+* :bug: fix OffscreenCanvas when not supported ([adcdd0f](https://github.com/urpflanze-org/drawer-canvas/commits/adcdd0f0d89421bf4e0101cd3be836733fa00a17))
+
 ## [0.2.0](https://github.com/urpflanze-org/drawer-canvas/compare/v0.1.2...v0.2.0) (2021-07-28)
 
 ### [0.1.2](https://github.com/urpflanze-org/drawer-canvas/compare/v0.1.1...v0.1.2) (2021-07-27)
