@@ -22,6 +22,11 @@ import { bBrowser, bWorker, fit } from './utils'
  */
 export type DCanvas = Canvas | HTMLCanvasElement | OffscreenCanvas
 
+const bSupportOffscreen =
+	bBrowser &&
+	typeof HTMLCanvasElement !== 'undefined' &&
+	typeof HTMLCanvasElement.prototype.transferControlToOffscreen !== 'undefined'
+
 /**
  *
  * @category DrawerCanvas
@@ -77,7 +82,8 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 			this.setScene(scene)
 		}
 
-		if (!bWorker || (bWorker && canvasOrContainer instanceof OffscreenCanvas)) this.setCanvas(canvasOrContainer)
+		if (!bWorker || (bWorker && bSupportOffscreen && canvasOrContainer instanceof OffscreenCanvas))
+			this.setCanvas(canvasOrContainer)
 	}
 
 	/**
@@ -98,7 +104,7 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 	 */
 	public setCanvas(canvasOrContainer?: HTMLElement | DCanvas): void {
 		if (bWorker) {
-			if (canvasOrContainer instanceof OffscreenCanvas) {
+			if (bSupportOffscreen && canvasOrContainer instanceof OffscreenCanvas) {
 				this.canvas = canvasOrContainer
 			} else {
 				console.error('Cannot set cavas')
@@ -109,7 +115,10 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 
 				if (
 					canvasOrContainer instanceof HTMLElement &&
-					!(canvasOrContainer instanceof HTMLCanvasElement || canvasOrContainer instanceof OffscreenCanvas)
+					!(
+						canvasOrContainer instanceof HTMLCanvasElement ||
+						(bSupportOffscreen && canvasOrContainer instanceof OffscreenCanvas)
+					)
 				) {
 					this.canvas = canvas
 					while (canvasOrContainer.lastChild) canvasOrContainer.removeChild(canvasOrContainer.lastChild)
