@@ -48,8 +48,7 @@
 		}
 	],
 	"scripts": {
-		"build-browser": "npx webpack --config webpack.config.js",
-		"build": "tsc --p tsconfig.json && tsc --p tsconfig-esm.json && npm run build-browser",
+		"build": "tsc --p tsconfig.json && tsc --p tsconfig-esm.json && npx webpack --config webpack.config.js",
 		"watch": "tsc --watch",
 		"lint": "eslint src --ext .ts",
 		"prepublishOnly": "npm run build",
@@ -62,8 +61,8 @@
 	},
 	"publishConfig": {},
 	"peerDependencies": {
-		"@urpflanze/color": "^0.0.4",
-		"@urpflanze/core": "^0.5.6"
+		"@urpflanze/color": "^0.0.5",
+		"@urpflanze/core": "^0.5.7"
 	},
 	"devDependencies": {
 		"@types/tap": "^15.0.4",
