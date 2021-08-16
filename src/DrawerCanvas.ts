@@ -170,7 +170,7 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 		} = {
 			...this.drawerOptions,
 			ghostIndex: undefined,
-			clear: this.drawerOptions.clear || timeline.getCurrentFrame() <= 1,
+			clear: this.drawerOptions.clear || timeline.getCurrentFrame() <= 0,
 			time: drawAtTime,
 		}
 
@@ -273,6 +273,7 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 		let logStrokeColorWarn = false
 
 		scene.currentTime = time
+
 		const sceneChilds = scene.getChildren()
 		for (let i = 0, len = sceneChilds.length; i < len; i++) {
 			const sceneChild = sceneChilds[i]

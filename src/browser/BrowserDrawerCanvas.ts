@@ -1,5 +1,5 @@
 import type { Scene } from '@urpflanze/core'
-import { IDrawerCanvasOptions } from '../types'
+import { IBrowserDrawerCanvasOptions } from '../types'
 import { DrawerCanvas } from '../DrawerCanvas'
 import { bBrowser } from '../utils'
 
@@ -11,6 +11,7 @@ import { bBrowser } from '../utils'
  */
 class BrowserDrawerCanvas extends DrawerCanvas {
 	protected dpi = 1
+	protected loop
 
 	protected animation_id: number | null
 	protected draw_id: number | null
@@ -19,13 +20,14 @@ class BrowserDrawerCanvas extends DrawerCanvas {
 	constructor(
 		scene?: Scene,
 		canvasOrContainer?: HTMLElement | HTMLCanvasElement | OffscreenCanvas,
-		drawerOptions?: IDrawerCanvasOptions & { dpi?: number },
+		drawerOptions?: IBrowserDrawerCanvasOptions,
 		duration = 60000,
 		framerate = 60
 	) {
 		super(scene, canvasOrContainer, drawerOptions, duration, framerate)
 
 		this.dpi = drawerOptions?.dpi || 1
+		this.loop = drawerOptions?.loop === false ? false : true
 
 		this.draw_id = null
 		this.redraw_id = null
@@ -66,7 +68,15 @@ class BrowserDrawerCanvas extends DrawerCanvas {
 		if (this.timeline.bSequenceStarted()) {
 			this.animation_id = requestAnimationFrame(this.animate)
 
-			if (this.timeline.tick(timestamp)) this.draw()
+			if (this.timeline.tick(timestamp)) {
+				if (this.loop || (this.loop === false && this.timeline.getCurrentLoop() === 0)) this.draw()
+				else {
+					const { duration, frames } = this.timeline.getSequence()
+					cancelAnimationFrame(this.animation_id)
+					this.timeline.setTime(duration - 0.00001)
+					this.draw()
+				}
+			}
 		}
 	}
 

@@ -37,6 +37,7 @@ class Timeline extends Emitter<ITimelineEvents> {
 
 	private currentFrame: number
 	private currentTime: number
+	private currentLoop = 0
 
 	private paused_time = 0
 	private start_time: number
@@ -215,7 +216,9 @@ class Timeline extends Emitter<ITimelineEvents> {
 				this.calculateFPS(1 / (elapsed / 1000))
 				this.last_tick = currentTime
 
-				this.currentTime = (currentTime - (elapsed % this.tick_time)) % this.sequence.duration
+				const c = currentTime - (elapsed % this.tick_time)
+				this.currentLoop = currentTime === 0 ? 0 : Math.ceil(c / this.sequence.duration) - 1
+				this.currentTime = c % this.sequence.duration
 				this.currentFrame = this.getFrameAtTime(this.currentTime)
 
 				this.dispatch('timeline:progress', {
@@ -229,6 +232,13 @@ class Timeline extends Emitter<ITimelineEvents> {
 		}
 
 		return false
+	}
+
+	/**
+	 * Return sequence loop
+	 */
+	public getCurrentLoop(): number {
+		return this.currentLoop
 	}
 
 	/**
@@ -287,7 +297,7 @@ class Timeline extends Emitter<ITimelineEvents> {
 	}
 
 	/**
-	 * set current frame
+	 * set current frame (1 to sequence.frames)
 	 *
 	 * @param {number} frame
 	 */

@@ -76,6 +76,14 @@ export interface IDrawerCanvasOptions {
 /**
  * @category DrawerCanvas
  */
+export interface IBrowserDrawerCanvasOptions extends IDrawerCanvasOptions {
+	dpi?: number
+	loop?: boolean
+}
+
+/**
+ * @category DrawerCanvas
+ */
 export interface IDrawerCanvasEvents {
 	/**
 	 * Called before scene is drawn
