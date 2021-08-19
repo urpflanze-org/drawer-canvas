@@ -2,6 +2,7 @@ import type { Scene } from '@urpflanze/core'
 import { IBrowserDrawerCanvasOptions } from '../types'
 import { DrawerCanvas } from '../DrawerCanvas'
 import { bBrowser } from '../utils'
+import { DCanvas } from '../browser'
 
 /**
  *
@@ -38,6 +39,12 @@ class BrowserDrawerCanvas extends DrawerCanvas {
 		this.startAnimation = this.startAnimation.bind(this)
 
 		this.resize(this.drawerOptions.width, this.drawerOptions.height)
+
+		this.handleVisibilityChange = this.handleVisibilityChange.bind(this)
+	}
+
+	public setCanvas(canvasOrContainer?: HTMLElement | DCanvas): void {
+		super.setCanvas(canvasOrContainer)
 	}
 
 	public resize(width: number, height: number, sceneFit?: 'cover' | 'contain' | 'none', dpi: number = this.dpi): void {
@@ -71,12 +78,19 @@ class BrowserDrawerCanvas extends DrawerCanvas {
 			if (this.timeline.tick(timestamp)) {
 				if (this.loop || (this.loop === false && this.timeline.getCurrentLoop() === 0)) this.draw()
 				else {
-					const { duration, frames } = this.timeline.getSequence()
 					cancelAnimationFrame(this.animation_id)
-					this.timeline.setTime(duration - 0.00001)
+					this.timeline.setTime(this.timeline.getSequence().duration - 0.00001)
 					this.draw()
 				}
 			}
+		}
+	}
+
+	private handleVisibilityChange() {
+		if (document.hidden) {
+			this.pauseAnimation()
+		} else {
+			this.playAnimation()
 		}
 	}
 
@@ -85,6 +99,8 @@ class BrowserDrawerCanvas extends DrawerCanvas {
 	 */
 	public startAnimation(): void {
 		this.stopAnimation()
+
+		document.addEventListener('visibilitychange', this.handleVisibilityChange, false)
 
 		this.timeline.start()
 		this.animation_id = requestAnimationFrame(this.animate)
@@ -95,6 +111,8 @@ class BrowserDrawerCanvas extends DrawerCanvas {
 	 */
 	public stopAnimation(): void {
 		this.timeline.stop()
+
+		document.removeEventListener('visibilitychange', this.handleVisibilityChange)
 
 		if (this.animation_id) cancelAnimationFrame(this.animation_id)
 	}

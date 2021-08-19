@@ -530,21 +530,3 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 }
 
 export { DrawerCanvas }
-
-// const sourceRatio = sourceWidth / sourceHeight
-
-// let x = 0,
-// 	y = 0,
-// 	bgWidth = width,
-// 	bgHeight = height
-// if (sourceRatio !== ratio) {
-// 	if (options.backgroundImageFit === 'contain') {
-// 		bgWidth = ratio > sourceRatio ? (sourceWidth * height) / sourceHeight : width
-// 		bgHeight = ratio > sourceRatio ? height : (sourceHeight * width) / sourceWidth
-// 	} else {
-// 		bgWidth = ratio < sourceRatio ? (sourceWidth * height) / sourceHeight : width
-// 		bgHeight = ratio < sourceRatio ? height : (sourceHeight * width) / sourceWidth
-// 	}
-
-// 	x = (width - bgWidth) / 2
-// 	y = (height - bgHeight) / 2
