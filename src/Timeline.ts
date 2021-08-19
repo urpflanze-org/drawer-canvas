@@ -1,7 +1,7 @@
 import { now } from '@urpflanze/core/dist/cjs/Utilities'
 import { mod } from '@urpflanze/core/dist/cjs/math'
 import { Emitter } from './Emitter'
-import { ISequenceMeta, ITimelineEvents } from './types'
+import { ISequenceMeta, ITimelineEvents, TTimelineTickMode } from './types'
 
 /**
  * Is used for sequence time management.
@@ -46,9 +46,10 @@ class Timeline extends Emitter<ITimelineEvents> {
 
 	private b_sequence_started: boolean
 
+	private tickMode: TTimelineTickMode
 	private sequence: ISequenceMeta
 
-	constructor(duration = 60000, framerate = 30) {
+	constructor(duration = 60000, framerate = 30, tickMode: TTimelineTickMode = 'linear') {
 		super()
 
 		this.sequence = {
@@ -67,6 +68,8 @@ class Timeline extends Emitter<ITimelineEvents> {
 
 		this.last_tick = 0
 		this.start_time = 0
+
+		this.tickMode = tickMode
 	}
 
 	//#region sequence meta
@@ -207,6 +210,7 @@ class Timeline extends Emitter<ITimelineEvents> {
 			if (!this.start_time) {
 				this.start_time = timestamp
 				this.last_tick = -this.tick_time
+				this.currentFrame = -1
 			}
 
 			const currentTime = timestamp - this.start_time
@@ -216,11 +220,16 @@ class Timeline extends Emitter<ITimelineEvents> {
 				this.calculateFPS(1 / (elapsed / 1000))
 				this.last_tick = currentTime
 
-				const c = currentTime - (elapsed % this.tick_time)
-				this.currentLoop = currentTime === 0 ? 0 : Math.ceil(c / this.sequence.duration) - 1
-				this.currentTime = c % this.sequence.duration
-				this.currentFrame = this.getFrameAtTime(this.currentTime)
-
+				if (this.tickMode !== 'async') {
+					this.currentFrame = (this.currentFrame + 1) % this.sequence.frames
+					this.currentTime = this.getFrameTime(this.currentFrame - 1)
+					this.currentLoop = currentTime === 0 ? 0 : Math.ceil(this.currentTime / this.sequence.duration) - 1
+				} else {
+					const currentTimeFixed = currentTime - (elapsed % this.tick_time)
+					this.currentLoop = currentTime === 0 ? 0 : Math.ceil(currentTimeFixed / this.sequence.duration) - 1
+					this.currentTime = currentTimeFixed % this.sequence.duration
+					this.currentFrame = this.getFrameAtTime(this.currentTime)
+				}
 				this.dispatch('timeline:progress', {
 					currentFrame: this.currentFrame,
 					currentTime: this.currentTime,
@@ -297,7 +306,7 @@ class Timeline extends Emitter<ITimelineEvents> {
 	}
 
 	/**
-	 * set current frame (1 to sequence.frames)
+	 * set current frame (0 to sequence.frames - 1)
 	 *
 	 * @param {number} frame
 	 */

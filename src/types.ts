@@ -136,6 +136,8 @@ export interface ISceneChildDrawerData {
 	composite?: TCanvasContexComposite
 }
 
+export type TTimelineTickMode = 'linear' | 'async'
+
 /**
  * @category Timeline
  */

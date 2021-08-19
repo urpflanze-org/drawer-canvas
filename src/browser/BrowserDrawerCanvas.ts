@@ -1,5 +1,5 @@
 import type { Scene } from '@urpflanze/core'
-import { IBrowserDrawerCanvasOptions } from '../types'
+import { IBrowserDrawerCanvasOptions, TTimelineTickMode } from '../types'
 import { DrawerCanvas } from '../DrawerCanvas'
 import { bBrowser } from '../utils'
 import { DCanvas } from '../browser'
@@ -23,9 +23,10 @@ class BrowserDrawerCanvas extends DrawerCanvas {
 		canvasOrContainer?: HTMLElement | HTMLCanvasElement | OffscreenCanvas,
 		drawerOptions?: IBrowserDrawerCanvasOptions,
 		duration = 60000,
-		framerate = 60
+		framerate = 60,
+		tickMode: TTimelineTickMode = drawerOptions?.clear === false ? 'linear' : 'async'
 	) {
-		super(scene, canvasOrContainer, drawerOptions, duration, framerate)
+		super(scene, canvasOrContainer, drawerOptions, duration, framerate, tickMode)
 
 		this.dpi = drawerOptions?.dpi || 1
 		this.loop = drawerOptions?.loop === false ? false : true

@@ -14,6 +14,7 @@ import {
 	IDrawerCanvasPropArguments,
 	IDrawerCanvasStreamProps,
 	IDrawerPropArguments,
+	TTimelineTickMode,
 } from './types'
 import { bBrowser, bWorker, fit } from './utils'
 
@@ -52,7 +53,8 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 		canvasOrContainer?: HTMLElement | DCanvas,
 		drawerOptions?: IDrawerCanvasOptions,
 		duration = 60000,
-		framerate = 60
+		framerate = 60,
+		tickMode: TTimelineTickMode = drawerOptions?.clear === false ? 'linear' : 'async'
 	) {
 		super()
 
@@ -72,7 +74,7 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 			backgroundImageFit: drawerOptions?.backgroundImageFit || 'cover',
 		}
 
-		this.timeline = new Timeline(duration, framerate)
+		this.timeline = new Timeline(duration, framerate, tickMode)
 		this.timeline.setTime(this.drawerOptions.time)
 		this.draw_id = null
 		this.redraw_id = null
@@ -162,6 +164,7 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 
 		const timeline = this.timeline
 		const drawAtTime = timeline.getTime()
+		const currentFrame = timeline.getFrameAtTime(drawAtTime)
 
 		const drawerOptions: Required<Omit<IDrawerCanvasOptions, 'backgroundImage' | 'ghostSkipFunction'>> & {
 			backgroundImage?: CanvasImageSource
@@ -170,11 +173,9 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 		} = {
 			...this.drawerOptions,
 			ghostIndex: undefined,
-			clear: this.drawerOptions.clear || timeline.getCurrentFrame() <= 0,
+			clear: this.drawerOptions.clear || currentFrame <= 0,
 			time: drawAtTime,
 		}
-
-		const currentFrame = timeline.getFrameAtTime(drawAtTime)
 
 		this.dispatch('drawer-canvas:before_draw', {
 			currentFrame: currentFrame,
