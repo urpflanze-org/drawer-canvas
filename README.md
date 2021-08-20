@@ -145,7 +145,7 @@ scene.add(
 	})
 )
 
-const drawer = new DrawerCanvas(scene, document.body, {}, 3000 /* duration */, 24 /* fps */)
+const drawer = new DrawerCanvas(scene, document.body, {}, 3000 /* duration */, 24 /* fps */, 'linear' /* tick mode */)
 
 const renderer = new Renderer(drawer)
 renderer.render('video/mp4', 1).then(buffer => {
@@ -173,7 +173,7 @@ scene.add(
 	})
 )
 
-const drawer = new DrawerCanvas(scene, undefined, {}, 3000 /* duration */, 24 /* fps */)
+const drawer = new DrawerCanvas(scene, undefined, {}, 3000 /* duration */, 24 /* fps */, 'async' /* tick mode */)
 
 const renderer = new Renderer(drawer /*, ffmpegCorePath*/)
 renderer.render('video/mp4', 1).then(buffer => {
@@ -260,3 +260,4 @@ Any parameter is optional
 | sceneFit           | cover \| contain \| none | contain      | Fit scene into canvas                                                   |
 | backgroundImage    | CanvasImageSource        | undefined    | Draw image after scene background                                       |
 | backgroundImageFit | cover \| contain \| none | cover        | `backgroundImage` fit                                                   |
+| loop               | boolean                  | true         | Repeat the animation in loop                                            |
