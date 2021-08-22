@@ -28,6 +28,10 @@ const bSupportOffscreen =
 	typeof HTMLCanvasElement !== 'undefined' &&
 	typeof HTMLCanvasElement.prototype.transferControlToOffscreen !== 'undefined'
 
+type TDrawerOptions = Required<Omit<IDrawerCanvasOptions, 'backgroundImage' | 'ghostSkipFunction'>> & {
+	backgroundImage?: CanvasImageSource
+	ghostSkipFunction?: (ghostRepetition: IBaseRepetition, currentTime: number) => number
+}
 /**
  *
  * @category DrawerCanvas
@@ -35,10 +39,7 @@ const bSupportOffscreen =
  */
 class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 	protected scene?: Scene
-	protected drawerOptions: Required<Omit<IDrawerCanvasOptions, 'backgroundImage' | 'ghostSkipFunction'>> & {
-		backgroundImage?: CanvasImageSource
-		ghostSkipFunction?: (ghostRepetition: IBaseRepetition, currentTime: number) => number
-	}
+	protected drawerOptions: TDrawerOptions
 
 	protected animation_id: number | null
 	protected draw_id: number | null
@@ -75,7 +76,7 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 		}
 
 		this.timeline = new Timeline(duration, framerate, tickMode)
-		this.timeline.setTime(this.drawerOptions.time)
+		this.timeline.setTime(this.drawerOptions.time || 0)
 		this.draw_id = null
 		this.redraw_id = null
 		this.animation_id = null
@@ -99,6 +100,16 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 		defaultValue: IDrawerCanvasOptions[K]
 	): IDrawerCanvasOptions[K] {
 		return this.drawerOptions[name] ?? defaultValue
+	}
+
+	/**
+	 * Set Drawer options
+	 *
+	 * @param {K keyof TDrawerOptions} name
+	 * @param {TDrawerOptions[K]} value
+	 */
+	public setOption<K extends keyof TDrawerOptions>(name: K, value: TDrawerOptions[K]): void {
+		this.drawerOptions[name] = value
 	}
 
 	/**

@@ -1,5 +1,5 @@
 import type { Scene } from '@urpflanze/core'
-import { IBrowserDrawerCanvasOptions, TTimelineTickMode } from '../types'
+import { IBrowserDrawerCanvasOptions, IDrawerCanvasOptions, TTimelineTickMode } from '../types'
 import { DrawerCanvas } from '../DrawerCanvas'
 import { bBrowser } from '../utils'
 import { DCanvas } from '../browser'
@@ -12,7 +12,7 @@ import { DCanvas } from '../browser'
  */
 class BrowserDrawerCanvas extends DrawerCanvas {
 	protected dpi = 1
-	protected loop
+	protected loop = true
 
 	protected animation_id: number | null
 	protected draw_id: number | null
@@ -39,13 +39,29 @@ class BrowserDrawerCanvas extends DrawerCanvas {
 		this.animate = this.animate.bind(this)
 		this.startAnimation = this.startAnimation.bind(this)
 
-		this.resize(this.drawerOptions.width, this.drawerOptions.height)
+		this.resize(this.drawerOptions.width || scene?.width || 400, this.drawerOptions.height || scene?.height || 400)
 
 		this.handleVisibilityChange = this.handleVisibilityChange.bind(this)
 	}
 
 	public setCanvas(canvasOrContainer?: HTMLElement | DCanvas): void {
 		super.setCanvas(canvasOrContainer)
+	}
+
+	/**
+	 * Return option value or default
+	 *
+	 * @param {K keyof IBrowserDrawerCanvasOptions} name
+	 * @param {IBrowserDrawerCanvasOptions[K]} value
+	 */
+	public setOption<K extends keyof IBrowserDrawerCanvasOptions>(name: K, value: IBrowserDrawerCanvasOptions[K]): void {
+		if (name === 'loop') {
+			this.loop = value === false ? false : true
+		} else if (name === 'dpi') {
+			this.dpi = typeof value === 'number' ? value : 1
+		} else {
+			super.setOption(name as keyof IDrawerCanvasOptions, value as IDrawerCanvasOptions[keyof IDrawerCanvasOptions])
+		}
 	}
 
 	public resize(width: number, height: number, sceneFit?: 'cover' | 'contain' | 'none', dpi: number = this.dpi): void {
