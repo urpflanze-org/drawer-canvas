@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/urpflanze-org/drawer-canvas/compare/v0.2.1...v0.3.1) (2021-08-22)
+
+
+### Features
+
+* **drawer:** add timeline tick mode (linear, async) ([3603a06](https://github.com/urpflanze-org/drawer-canvas/commits/3603a067c4be18d5cc2da04499e4e35e2004baad))
+* **drawer:** set drawer option ([e7901c5](https://github.com/urpflanze-org/drawer-canvas/commits/e7901c598c45545c9543b5eb4eb6051c9680c28b))
+* prevent animation loop in browser ([e4652af](https://github.com/urpflanze-org/drawer-canvas/commits/e4652af00caca6a4d219773fdfde042fb83209bc))
+* stop animation when visibility change on browser ([185ccaa](https://github.com/urpflanze-org/drawer-canvas/commits/185ccaa4b2e15e3a905206f3af0b5fc50c440ba0))
+
 ## [0.3.0](https://github.com/urpflanze-org/drawer-canvas/compare/v0.2.1...v0.3.0) (2021-08-22)
 
 
