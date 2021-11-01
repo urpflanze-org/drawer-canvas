@@ -1,3 +1,5 @@
+export * from './Emitter'
+
 export * from './Timeline'
 
 export * from './DrawerCanvas'
