@@ -168,6 +168,14 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 		this.scene = scene
 	}
 
+	public getScene(): Scene | undefined {
+		return this.scene
+	}
+
+	public getTimeline(): Timeline {
+		return this.timeline
+	}
+
 	public draw(): number {
 		if (this.context === null || typeof this.scene === 'undefined') return 0
 

@@ -65,6 +65,7 @@
 		"@urpflanze/core": "^0.5.7"
 	},
 	"devDependencies": {
+		"@types/offscreencanvas": "^2019.6.4",
 		"@types/tap": "^15.0.4",
 		"@typescript-eslint/eslint-plugin": "^4.28.4",
 		"@urpflanze/typedoc-docs": "^0.1.15",
