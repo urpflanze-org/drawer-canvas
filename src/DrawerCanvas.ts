@@ -1,4 +1,4 @@
-import { parseColor } from '@urpflanze/color'
+import { parseColor } from '@urpflanze/color/dist/cjs'
 import type { IBaseRepetition, Scene, ShapePrimitive, TDrawerProp } from '@urpflanze/core'
 import { now } from '@urpflanze/core/dist/cjs/Utilities'
 import { mod } from '@urpflanze/core/dist/cjs/math'
@@ -110,6 +110,10 @@ class DrawerCanvas extends Emitter<IDrawerCanvasEvents> {
 	 */
 	public setOption<K extends keyof TDrawerOptions>(name: K, value: TDrawerOptions[K]): void {
 		this.drawerOptions[name] = value
+	}
+
+	public getOptions(): TDrawerOptions {
+		return this.drawerOptions
 	}
 
 	/**
